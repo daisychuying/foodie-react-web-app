@@ -11,6 +11,7 @@ const Navigation = () => {
         'search',
         'users',
         'register',
+        'login'
     ]
     return(
         <ul className="nav nav-pills">
