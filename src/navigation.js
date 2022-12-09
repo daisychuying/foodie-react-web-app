@@ -11,7 +11,8 @@ const Navigation = () => {
         'search',
         'users',
         'register',
-        'login'
+        'login',
+        'profile',
     ]
     return(
         <ul className="nav nav-pills">
@@ -20,7 +21,7 @@ const Navigation = () => {
                     <li className="nav-item">
                         <Link to={`/${screen}`}
                               className={`nav-link ${parts[1] === screen?'active': ''}`}>
-                            {screen}
+                            <span className="text-capitalize">{screen}</span>
                         </Link>
                     </li>
                 )
