@@ -13,10 +13,13 @@ import ProtectedRoute from "./users/protected-route";
 import Profile from "./users/profile";
 import PublicProfile from "./users/public-profile";
 import usersReducer from "./users/users-reducer";
+import recipesReducer from "./recipes/recipes-reducer";
+import RecipesDetail from "./recipes/recipes-detail";
 
 const store = configureStore({
     reducer: {
         users: usersReducer,
+        recipes: recipesReducer,
     }
 })
 
@@ -28,6 +31,7 @@ function App() {
                   <Navigation />
                   <Routes>
                       <Route path="/" element={<Recipes />} />
+                      <Route path="/details/:recipeId" element={<RecipesDetail />} />
                       {/* Users */}
                       <Route path="/login" element={<Login />} />
                       <Route path="/register" element={<Register />} />
