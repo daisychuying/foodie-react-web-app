@@ -5,20 +5,25 @@ import {useSelector} from "react-redux";
 const Navigation = () => {
     const {pathname} = useLocation()
     const parts = pathname.split('/')
+
+    const screens = [
+        '',
+        'search',
+        'users',
+        'register',
+    ]
     return(
         <ul className="nav nav-pills">
-            <li className="nav-item">
-                <Link to="/"
-                      className={`nav-link ${parts[1] === ''?'active': ''}`}>
-                    Recipes
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/users"
-                      className={`nav-link ${parts[1] === 'users'?'active': ''}`}>
-                    Users
-                </Link>
-            </li>
+            {
+                screens.map( (screen)=>
+                    <li className="nav-item">
+                        <Link to={`/${screen}`}
+                              className={`nav-link ${parts[1] === screen?'active': ''}`}>
+                            {screen}
+                        </Link>
+                    </li>
+                )
+            }
         </ul>
     )
 }

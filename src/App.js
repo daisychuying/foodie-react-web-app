@@ -12,9 +12,12 @@ import Register from "./users/register";
 import ProtectedRoute from "./users/protected-route";
 import Profile from "./users/profile";
 import PublicProfile from "./users/public-profile";
+import usersReducer from "./users/users-reducer";
 
 const store = configureStore({
-    reducer: {}
+    reducer: {
+        users: usersReducer,
+    }
 })
 
 function App() {

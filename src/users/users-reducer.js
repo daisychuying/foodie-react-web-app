@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {findAllUsersThunk} from "./users-thunk";
 
 const usersReducer = createSlice({
     name: 'users',
@@ -7,7 +8,11 @@ const usersReducer = createSlice({
         users: []
     },
     reducers: {},
-    extraReducers: {}
+    extraReducers: {
+        [findAllUsersThunk.fulfilled]: (state, action) => {
+            state.users = action.payload
+        }
+    }
 })
 
 export default usersReducer.reducer
