@@ -2,21 +2,35 @@ import {useParams} from "react-router";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findRecipeByIdThunk} from "./recipes-thunks";
+import {createBookmarkThunk} from "../bookmarks/bookmarks-thunks";
 
 const RecipesDetail = () => {
-    const {recipeId} = useParams();
+    const {recipeID} = useParams();
     const {details} = useSelector(state => state.recipes);
-
+    const {currentUser} = useSelector(state => state.users);
     const dispatch = useDispatch();
+
+    const handleBookmarkBtn = () => {
+        dispatch(createBookmarkThunk({
+            currentUser,
+            recipeID
+        }))
+    }
+
     useEffect(() => {
-        dispatch(findRecipeByIdThunk(recipeId));
+        dispatch(findRecipeByIdThunk(recipeID));
     }, [])
+
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col-5">
                     <img className="img-fluid" src={details.image}  alt={details.title} />
+                    {currentUser &&
+                    <button className="btn btn-primary mt-5" onClick={handleBookmarkBtn}>
+                        <i className="bi bi-bookmark-plus"></i> Bookmark
+                    </button>}
                 </div>
                 <div className="col-7">
                     <h3>{details.title}</h3>
@@ -44,7 +58,7 @@ const RecipesDetail = () => {
             </ul>
 
 
-            {/*<pre>{JSON.stringify(details, null, 2)}</pre>*/}
+            <pre>{JSON.stringify(details, null, 2)}</pre>
         </div>
     )
 }
