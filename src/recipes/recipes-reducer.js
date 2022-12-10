@@ -3,7 +3,6 @@ import {findRecipeByIdThunk, findRecipeBySearchTermThunk, getRandomRecipesThunk}
 
 const initialState = {
     recipes: [],
-    loading: false,
     details: {},
 }
 
