@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findRecipeByIdThunk} from "./recipes-thunks";
 import {createBookmarkThunk, deleteBookmarkThunk, findUserHasBookmarkedThunk} from "../bookmarks/bookmarks-thunks";
 import {createReviewThunk, findReviewsByRecipeThunk} from "../reviews/reviews-thunk";
+import {Link} from "react-router-dom";
 
 const RecipesDetail = () => {
     const {recipeID} = useParams();
@@ -48,7 +49,7 @@ const RecipesDetail = () => {
     }, [])
 
     return (
-        <div className="container">
+        <div className="container my-4">
             <div className="row">
                 <div className="col-5">
                     <img className="img-fluid" src={details.image}  alt={details.title} />
@@ -96,17 +97,19 @@ const RecipesDetail = () => {
             <div className="ms-5">
                 <h4>Reviews</h4>
                 {currentUser &&
-                    <div className="mt-3 mb-5">
-                        <textarea className="form-control" onChange={(e) => setReview(e.target.value)}/>
-                        <button className="btn btn-primary float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
-                    </div>
+                    <>
+                        <div className="mt-3 mb-5">
+                            <textarea className="form-control" onChange={(e) => setReview(e.target.value)}/>
+                            <button className="btn btn-primary float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
+                        </div>
+                        <br />
+                    </>
                 }
-                <br />
                 <ul className="list-group">
                     {reviews && reviews.map((review, index) =>
                         <li key={index} className="list-group-item">
                             {review.review}
-                            <span className="float-end">{review.author.username}</span>
+                            <Link to={`/profile/${review.author._id}`} className="float-end">{review.author.username}</Link>
                         </li>
 
                     )}
