@@ -13,6 +13,13 @@ const Login = () => {
          setError(null)
          const loginUser = {username, password}
          dispatch(loginThunk(loginUser))
+         //if login unsuccessful set error and display
+         if(!currentUser){
+             setError("Invalid username or password")
+         }else{
+             setError(null)
+         }
+
      }
 
     return (

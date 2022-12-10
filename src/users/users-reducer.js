@@ -10,8 +10,8 @@ const usersReducer = createSlice({
     },
     reducers: {},
     extraReducers: {
-        [findAllUsersThunk.fulfilled]: (state, action) => {
-            state.users = action.payload
+        [findAllUsersThunk.fulfilled]: (state, payload) => {
+            state.users = payload
         },
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
