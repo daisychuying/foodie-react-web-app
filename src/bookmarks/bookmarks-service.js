@@ -10,7 +10,17 @@ export const createBookmark = async (bookmark) => {
     return response.data;
 }
 
+export const deleteBookmark = async (user, recipeID) => {
+    const response = await api.delete(`${USER_BOOKMARKS_API}/${user}/bookmarks/${recipeID}`);
+    return response.data;
+}
+
 export const findBookmarksByUser = async (user) => {
     const response = await api.get(`${USER_BOOKMARKS_API}/${user}/bookmarks`);
+    return response.data;
+}
+
+export const findUserHasBookmarked = async (user, recipeID) => {
+    const response = await api.get(`${USER_BOOKMARKS_API}/${user}/bookmarks/${recipeID}`);
     return response.data;
 }

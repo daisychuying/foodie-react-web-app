@@ -16,12 +16,14 @@ import recipesReducer from "./recipes/recipes-reducer";
 import RecipesDetail from "./recipes/recipes-detail";
 import bookmarksReducer from "./bookmarks/bookmarks-reducer";
 import EditProfile from "./users/edit-profile";
+import reviewsReducer from "./reviews/reviews-reducer";
 
 const store = configureStore({
     reducer: {
         users: usersReducer,
         recipes: recipesReducer,
         bookmarks: bookmarksReducer,
+        reviews: reviewsReducer,
     }
 })
 

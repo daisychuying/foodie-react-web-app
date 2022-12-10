@@ -6,7 +6,7 @@ import RecipeCard from "./recipe-card";
 const RecipeList = () => {
     const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState("");
-    const {recipes, loading} = useSelector(state => state.recipes);
+    const {recipes} = useSelector(state => state.recipes);
 
     useEffect(() => {
         // dispatch(getRandomRecipesThunk())
@@ -22,11 +22,11 @@ const RecipeList = () => {
                     setSearchTerm(e.target.value)
                 }}
                 value={searchTerm}/>
-            <div className="row">
+            <div className="row mt-4">
                 {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe}/>)}
             </div>
 
-            <pre>{JSON.stringify(recipes, null, 2)}</pre>
+            {/*<pre>{JSON.stringify(recipes, null, 2)}</pre>*/}
         </>
     )
 }

@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import {useLocation} from "react-router";
-import {useSelector} from "react-redux";
 
 const Navigation = () => {
     const {pathname} = useLocation()
@@ -16,8 +15,8 @@ const Navigation = () => {
     return(
         <ul className="nav nav-pills">
             <li className="nav-item">
-                <Link to='/'
-                      className={`nav-link ${parts[1] === 'home'?'active': ''}`}>
+                <Link to={'/'}
+                      className={`nav-link ${parts[1] === '' ? 'active': ''}`}>
                     <span className="text-capitalize">Home</span>
                 </Link>
             </li>
