@@ -9,7 +9,7 @@ const PublicProfile = () => {
     const dispatch = useDispatch()
     useEffect( () => {
         dispatch(findUserByIdThunk(uid))
-    }, [uid])
+    }, [])
     return (
         <div>
             <div className="row py-5 px-4">
