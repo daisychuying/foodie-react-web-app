@@ -1,17 +1,19 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunk";
+import {useNavigate} from "react-router";
 
 const Register = () => {
-    const [username, setUsername] = useState('username')
-    const [password, setPassword] = useState('password')
-    const [validatePassword, setValidatePassword] = useState("reenter password")
+    const navigate = useNavigate();
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [validatePassword, setValidatePassword] = useState("")
     const [error, setError] = useState(null)
-    const [email, setEmail] = useState('email')
-    const [firstName, setFirstName] = useState('first name')
-    const [lastName, setLastName] = useState('last name')
-    const [role, setRole] = useState('FOODIE')
-    const [certifiedChefID, setCertifiedChefID] = useState('certifiedChefID')
+    const [email, setEmail] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [role, setRole] = useState('')
+    const [certifiedChefID, setCertifiedChefID] = useState('')
     const [foodieFavorite, setFoodieFavorite] = useState('')
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
@@ -28,6 +30,11 @@ const Register = () => {
         dispatch(registerThunk(newUser))
     }
 
+    useEffect( () => {
+        if (currentUser) {
+            navigate('/profile')
+        }
+    }, [])
     return (
         <>
             <h1>Register</h1>

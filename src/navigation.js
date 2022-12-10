@@ -7,7 +7,6 @@ const Navigation = () => {
     const parts = pathname.split('/')
 
     const screens = [
-        '',
         'search',
         'users',
         'register',
@@ -16,6 +15,12 @@ const Navigation = () => {
     ]
     return(
         <ul className="nav nav-pills">
+            <li className="nav-item">
+                <Link to='/'
+                      className={`nav-link ${parts[1] === 'home'?'active': ''}`}>
+                    <span className="text-capitalize">Home</span>
+                </Link>
+            </li>
             {
                 screens.map( (screen)=>
                     <li className="nav-item">

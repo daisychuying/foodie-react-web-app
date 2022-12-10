@@ -15,6 +15,7 @@ import usersReducer from "./users/users-reducer";
 import recipesReducer from "./recipes/recipes-reducer";
 import RecipesDetail from "./recipes/recipes-detail";
 import bookmarksReducer from "./bookmarks/bookmarks-reducer";
+import EditProfile from "./users/edit-profile";
 
 const store = configureStore({
     reducer: {
@@ -39,6 +40,7 @@ function App() {
                       <Route path="/users" element={<UserList />} />
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/profile/:uid" element={<PublicProfile />} />
+                      <Route path="/edit-profile" element={<EditProfile />}/>
                       {/* Recipes */}
                   </Routes>
               </BrowserRouter>

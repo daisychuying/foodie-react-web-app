@@ -1,26 +1,28 @@
 import {loginThunk} from "./users-thunk";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router";
 
 
 const Login = () => {
+     const navigate = useNavigate()
      const [username, setUsername] = useState('Username')
      const [password, setPassword] = useState('Password')
      const [error, setError] = useState(null)
      const {currentUser} = useSelector((state) => state.users)
      const dispatch = useDispatch()
      const handleLoginBtn= () =>{
-         setError(null)
          const loginUser = {username, password}
          dispatch(loginThunk(loginUser))
-         //if login unsuccessful set error and display
-         if(!currentUser){
+         if (!currentUser) {
              setError("Invalid username or password")
-         }else{
-             setError(null)
          }
-
      }
+     useEffect( () => {
+         if (currentUser) {
+             navigate("/profile")
+         }
+     })
 
     return (
         <>

@@ -37,5 +37,9 @@ export const createUser = () => {
 
 }
 
+export const updateUser = async (updatedUser) => {
+    const response = await axios.put(`${BASE_API_URL}/users/${updatedUser._id}`, updatedUser)
+    return updatedUser;
+}
+
 const deleteUser = () => {}
-const updateUser = () => {}
