@@ -37,7 +37,6 @@ const PublicProfile = () => {
         dispatch(findFollowingThunk(uid))
     }, [])
 
-    console.log(hasFollowed);
     return (
         <div>
             {publicProfile &&
@@ -73,12 +72,15 @@ const PublicProfile = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="px-4 py-3"><h5 className="mb-0">About</h5>
-                                <div className="p-4 rounded shadow-sm bg-light">
-                                    <p className="font-italic mb-0">Foodie Favorite:</p>
-                                    <p className="font-italic mb-0">{publicProfile.foodieFavorite}</p>
-                                </div>
-                            </div>
+
+                            {publicProfile.role == 'FOODIE' &&
+                                <div className="px-4 py-3"><h5 className="mb-0">About</h5>
+                                    <div className="p-4 rounded shadow-sm bg-light">
+                                        <p className="font-italic mb-0">Foodie Favorite:</p>
+                                        <p className="font-italic mb-0">{publicProfile.foodieFavorite}</p>
+                                    </div>
+                                </div>}
+
                             <div className="py-4 px-4">
                                 <div className="d-flex align-items-center justify-content-between mb-3"><h5
                                     className="mb-0">Recent collections</h5><a href="#" className="btn btn-link text-muted">Show

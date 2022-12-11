@@ -30,6 +30,7 @@ const followsReducer = createSlice({
         },
         [unfollowUserThunk.fulfilled]: (state, action) => {
             state.hasFollowed = null
+            state.followers = state.followers.filter(follow => follow._id !== action.payload._id)
         },
     }
 })

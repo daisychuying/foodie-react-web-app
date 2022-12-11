@@ -1,16 +1,24 @@
 import {useDispatch, useSelector} from "react-redux";
-import {logoutThunk} from "./users-thunk";
+import {findUserByIdThunk, logoutThunk} from "./users-thunk";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
+import {useEffect} from "react";
+import {findFollowersThunk, findFollowingThunk, findUserHasFollowedThunk} from "../followers/follows-thunks";
 
 const Profile = () => {
     const navigate = useNavigate()
     const {currentUser} = useSelector((state) => state.users)
+    const {followers, following} = useSelector((state) => state.follows)
     const dispatch = useDispatch()
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
         navigate('/login')
     }
+
+    useEffect( () => {
+        dispatch(findFollowersThunk(currentUser._id))
+        dispatch(findFollowingThunk(currentUser._id))
+    }, [])
     return (
         <div className="container">
             <h1>Profile</h1>
@@ -37,10 +45,10 @@ const Profile = () => {
                                             <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">215</h5>
                                                 <small className="text-muted"> <i className="fas fa-image mr-1"></i>Collections</small>
                                             </li>
-                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">745</h5>
+                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{followers.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-user mr-1"></i>Followers</small>
                                             </li>
-                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">340</h5>
+                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{following.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-user mr-1"></i>Following</small>
                                             </li>
                                         </ul>
