@@ -89,17 +89,17 @@ const Register = () => {
                                                 onChange={(e) => setLastName(e.target.value)}/>
 
                                             <label htmlFor="roles" className="mb-2">Choose a role:</label>
-                                            <form className="mb-2">
-                                                <select
-                                                    value={role}
-                                                    onChange={e => setRole(e.target.value)}>
-                                                    {options.map((value) => (
-                                                        <option value={value} key={value}>
-                                                            {value}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                            </form>
+                                            <br/>
+                                            <select
+                                                value={role}
+                                                onChange={e => setRole(e.target.value)}>
+                                                <option key='0'>Please selection from the following</option>
+                                                {options.map((value) => (
+                                                    <option value={value} key={value}>
+                                                        {value}
+                                                    </option>
+                                                ))}
+                                            </select>
                                             {
                                                 role === 'CHEF'&&
                                                 <div>
@@ -114,17 +114,17 @@ const Register = () => {
                                                 role ==='FOODIE'&&
                                                 <div>
                                                     <label className ="mb-2">Your Favorite Food type :</label>
-                                                    <form className="mb-2">
-                                                        <select
-                                                            value={foodieFavorite}
-                                                            onChange={e => setFoodieFavorite(e.target.value)}>
-                                                            {foodieType.map((value) => (
-                                                                <option value={value} key={value}>
-                                                                    {value}
-                                                                </option>
-                                                            ))}
-                                                        </select>
-                                                    </form>
+                                                    <br/>
+                                                    <select
+                                                        value={foodieFavorite}
+                                                        onChange={e => setFoodieFavorite(e.target.value)}>
+                                                        <option key='0'>Please selection from the following: </option>
+                                                        {foodieType.map((value) => (
+                                                            <option value={value} key={value}>
+                                                                {value}
+                                                            </option>
+                                                        ))}
+                                                    </select>
                                                 </div>
                                             }
                                             <button

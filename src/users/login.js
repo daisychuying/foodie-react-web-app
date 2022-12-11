@@ -6,8 +6,8 @@ import {useNavigate} from "react-router";
 
 const Login = () => {
      const navigate = useNavigate()
-     const [username, setUsername] = useState('Username')
-     const [password, setPassword] = useState('Password')
+     const [username, setUsername] = useState('')
+     const [password, setPassword] = useState('')
      const [error, setError] = useState(null)
      const {currentUser} = useSelector((state) => state.users)
      const dispatch = useDispatch()
@@ -36,38 +36,39 @@ const Login = () => {
                                     className="w-100"
                                     alt="Sample photo"/>
                                 <div className="card-body p-4 p-md-5">
-                    <h1 className="h3 mb-3 mt-5 fw-normal text-center">Please sign in</h1>
-                     {
-                         error &&
-                         <div className="alart alert-danger">
-                             {error}
-                         </div>
-                     }
-                     <div className="form-floating">
-                     <input
-                         className="form-control form-floating mb-2 "
-                         value = {username}
-                         id="floatingInput"
-                         placeholder="name@example.com"
-                         onChange={(e) => setUsername(e.target.value)}/>
-                        <label htmlFor="floatingInput">Username</label>
-                     </div>
-                     <div className="form-floating">
-                     <input
-                         className="form-control mb-2"
-                         value = {password}
-                         onChange={(e) => setPassword(e.target.value)}/>
-                        <label htmlFor="floatingInput">Password</label>
-                     </div>
-                     <button
-                         onClick={handleLoginBtn}
-                         className='w-100 btn btn-lg btn-primary'>
-                         Sign in
-                     </button>
-                     {
-                        currentUser &&
-                        <h2>Welcome{currentUser.username}</h2>
-                     }
+                                <h1 className="h3 mb-3 mt-5 fw-normal text-center">Please sign in</h1>
+                                 {
+                                     error &&
+                                     <div className="alart alert-danger">
+                                         {error}
+                                     </div>
+                                 }
+                                 <div className="form-floating">
+                                    <input
+                                         className="form-control form-floating mb-2 "
+                                         value = {username}
+                                         id="floatingInput"
+                                         placeholder="Username"
+                                         onChange={(e) => setUsername(e.target.value)}/>
+                                    <label htmlFor="floatingInput">Username</label>
+                                 </div>
+                                 <div className="form-floating">
+                                     <input
+                                         className="form-control mb-2"
+                                         value = {password}
+                                         placeholder="Password"
+                                         onChange={(e) => setPassword(e.target.value)}/>
+                                     <label htmlFor="floatingInput">Password</label>
+                                 </div>
+                                 <button
+                                     onClick={handleLoginBtn}
+                                     className='w-100 btn btn-lg btn-primary'>
+                                     Sign in
+                                 </button>
+                                 {
+                                    currentUser &&
+                                    <h2>Welcome{currentUser.username}</h2>
+                                 }
                             </div>
                         </div>
                     </div>
