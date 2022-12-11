@@ -17,6 +17,7 @@ import RecipesDetail from "./recipes/recipes-detail";
 import bookmarksReducer from "./bookmarks/bookmarks-reducer";
 import EditProfile from "./users/edit-profile";
 import reviewsReducer from "./reviews/reviews-reducer";
+import followsReducer from "./followers/follows-reducer";
 
 const store = configureStore({
     reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
         recipes: recipesReducer,
         bookmarks: bookmarksReducer,
         reviews: reviewsReducer,
+        follows: followsReducer,
     }
 })
 

@@ -30,6 +30,12 @@ const Navigation = () => {
                     </li>
                 )
             }
+            <li className="nav-item">
+                <Link to='/profile/639399ae76a4f02a36b40cf5'
+                      className={`nav-link`}>
+                    <span className="text-capitalize">Test</span>
+                </Link>
+            </li>
         </ul>
     )
 }
