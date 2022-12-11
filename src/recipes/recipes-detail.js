@@ -1,18 +1,16 @@
 import {useParams} from "react-router";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findRecipeByIdThunk} from "./recipes-thunks";
 import {createBookmarkThunk, deleteBookmarkThunk, findUserHasBookmarkedThunk} from "../bookmarks/bookmarks-thunks";
-import {createReviewThunk, findReviewsByRecipeThunk} from "../reviews/reviews-thunk";
-import {Link} from "react-router-dom";
+import {findReviewsByRecipeThunk} from "../reviews/reviews-thunk";
+import ReviewsList from "../reviews";
 
 const RecipesDetail = () => {
     const {recipeID} = useParams();
     const {details} = useSelector(state => state.recipes);
     const {hasBookmarked} = useSelector(state => state.bookmarks)
     const {currentUser} = useSelector(state => state.users);
-    const {reviews} = useSelector(state => state.reviews)
-    const [review, setReview] = useState('');
     const dispatch = useDispatch();
 
     const handleBookmarkBtn = () => {
@@ -30,12 +28,6 @@ const RecipesDetail = () => {
         }))
     }
 
-    const handlePostReviewBtn = () => {
-        dispatch(createReviewThunk({
-            review,
-            recipeID,
-        }))
-    }
 
     useEffect(() => {
         dispatch(findRecipeByIdThunk(recipeID));
@@ -67,13 +59,13 @@ const RecipesDetail = () => {
                     <h3>{details.title}</h3>
 
                     {details.readyInMinutes &&
-                    <h4>Ready In Minutes: {details.readyInMinutes}</h4>}
+                        <h4>Ready In Minutes: {details.readyInMinutes}</h4>}
 
                     {details.servings &&
-                    <h4>Serving Size: {details.servings}</h4>}
+                        <h4>Serving Size: {details.servings}</h4>}
 
                     {details.pairingText &&
-                    <h4>Recommended Pairing: {details.pairingText}</h4> }
+                        <h4>Recommended Pairing: {details.pairingText}</h4> }
 
                     {details.summary && <h4>Summary: </h4>}
                     <p dangerouslySetInnerHTML={{__html: details.summary}}></p>
@@ -94,29 +86,7 @@ const RecipesDetail = () => {
                 </ul>
             </div>
 
-            <div className="ms-5">
-                <h4>Reviews</h4>
-                {currentUser &&
-                    <>
-                        <div className="mt-3 mb-5">
-                            <textarea className="form-control" onChange={(e) => setReview(e.target.value)}/>
-                            <button className="btn btn-primary float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
-                        </div>
-                        <br />
-                    </>
-                }
-                <ul className="list-group">
-                    {reviews && reviews.map((review, index) =>
-                        <li key={index} className="list-group-item">
-                            {review.review}
-                            <Link to={`/profile/${review.author._id}`} className="float-end">{review.author.username}</Link>
-                        </li>
-
-                    )}
-                </ul>
-            </div>
-
-
+            <ReviewsList />
 
             {/*<pre>{JSON.stringify(details, null, 2)}</pre>*/}
         </div>
