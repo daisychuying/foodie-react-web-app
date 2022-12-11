@@ -16,8 +16,10 @@ const Profile = () => {
     }
 
     useEffect( () => {
-        dispatch(findFollowersThunk(currentUser._id))
-        dispatch(findFollowingThunk(currentUser._id))
+        if (currentUser){
+            dispatch(findFollowersThunk(currentUser._id))
+            dispatch(findFollowingThunk(currentUser._id))
+        }
     }, [])
     return (
         <div className="container">
