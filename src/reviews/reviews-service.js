@@ -14,3 +14,8 @@ export const findReviewsByRecipe = async (recipeID) => {
     const response = await api.get(`${RECIPE_REVIEW_API}/${recipeID}/reviews`);
     return response.data;
 }
+
+export const deleteReview = async (reviewID) => {
+    await api.delete(`${REVIEW_API}/${reviewID}`);
+    return reviewID;
+}

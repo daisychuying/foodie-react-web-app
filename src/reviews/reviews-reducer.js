@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createReviewThunk, findReviewsByRecipeThunk} from "./reviews-thunk";
+import {createReviewThunk, deleteReviewThunk, findReviewsByRecipeThunk} from "./reviews-thunk";
 
 const initialState = {
     reviews: [],
@@ -14,6 +14,9 @@ const reviewsReducer = createSlice({
         },
         [findReviewsByRecipeThunk.fulfilled]: (state, action) => {
             state.reviews = action.payload;
+        },
+        [deleteReviewThunk.fulfilled]: (state, {payload}) => {
+            state.reviews = state.reviews.filter(r => r._id !== payload);
         }
     }
 })

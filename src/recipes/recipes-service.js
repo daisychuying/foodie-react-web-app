@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const APIKEY = 'apiKey=e213e673ac394daa9f1885e7a7c09dd7';
+const APIKEY = 'apiKey=b4acd4eb87e644f5b8f9ae2fdac2c751';
 
-const SEARCH_URL = `https://api.spoonacular.com/recipes/complexSearch?${APIKEY}&number=15&query=`
+const SEARCH_URL = `https://api.spoonacular.com/recipes/complexSearch?${APIKEY}&query=`
 const DETAIL_URL = 'https://api.spoonacular.com/recipes/'
 const RANDOM_URL = `https://api.spoonacular.com/recipes/random?number=16&${APIKEY}`
 
