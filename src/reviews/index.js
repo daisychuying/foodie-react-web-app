@@ -1,7 +1,7 @@
-import {createReviewThunk, deleteReviewThunk} from "./reviews-thunk";
+import {createReviewThunk, deleteReviewThunk, findReviewsByRecipeThunk} from "./reviews-thunk";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 
 const ReviewsList = () => {
@@ -17,6 +17,10 @@ const ReviewsList = () => {
             recipeID,
         }))
     }
+
+    useEffect(() => {
+        dispatch(findReviewsByRecipeThunk(recipeID));
+    })
 
     return (
         <div className="ms-5">

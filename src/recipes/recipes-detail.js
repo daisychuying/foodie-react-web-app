@@ -31,7 +31,6 @@ const RecipesDetail = () => {
 
     useEffect(() => {
         dispatch(findRecipeByIdThunk(recipeID));
-        dispatch(findReviewsByRecipeThunk(recipeID));
         if (currentUser) {
             dispatch(findUserHasBookmarkedThunk({
                 user: currentUser._id,
