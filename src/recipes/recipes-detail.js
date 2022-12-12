@@ -3,7 +3,6 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findRecipeByIdThunk} from "./recipes-thunks";
 import {createBookmarkThunk, deleteBookmarkThunk, findUserHasBookmarkedThunk} from "../bookmarks/bookmarks-thunks";
-import {findReviewsByRecipeThunk} from "../reviews/reviews-thunk";
 import ReviewsList from "../reviews";
 
 const RecipesDetail = () => {
