@@ -4,11 +4,13 @@ import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
 import {findFollowersThunk, findFollowingThunk, findUserHasFollowedThunk} from "../followers/follows-thunks";
+import BookmarkCard from "../bookmarks/bookmark-card";
 
 const Profile = () => {
     const navigate = useNavigate()
     const {currentUser} = useSelector((state) => state.users)
     const {followers, following} = useSelector((state) => state.follows)
+    const {bookmarks} = useSelector(state => state.bookmarks);
     const dispatch = useDispatch()
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
@@ -72,9 +74,12 @@ const Profile = () => {
                                     }
 
                                     <div className="py-4 px-4">
-                                        <div className="d-flex align-items-center justify-content-between mb-3"><h5
-                                            className="mb-0">Recent collections</h5><a href="#" className="btn btn-link text-muted">Show
-                                            all</a></div>
+                                        <h5 className="mb-2">All collections</h5>
+                                        <div className="p-3 rounded shadow-sm bg-light row">
+                                            {bookmarks && bookmarks.map((bookmark, index) =>
+                                                <BookmarkCard key={index} bookmark={bookmark}/>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

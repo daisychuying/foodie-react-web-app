@@ -9,12 +9,14 @@ import {
     followUserThunk,
     unfollowUserThunk
 } from "../followers/follows-thunks";
-import {Link} from "react-router-dom";
+import {findBookmarksByUserThunk} from "../bookmarks/bookmarks-thunks";
+import BookmarkCard from "../bookmarks/bookmark-card";
 
 const PublicProfile = () => {
     const {uid} = useParams();
     const {publicProfile, currentUser} = useSelector((state) => state.users)
     const {followers, following, hasFollowed} = useSelector((state) => state.follows)
+    const {bookmarks} = useSelector(state => state.bookmarks);
     const dispatch = useDispatch()
 
     const handleFollowBtn = () => {
@@ -35,6 +37,7 @@ const PublicProfile = () => {
         dispatch(findUserByIdThunk(uid))
         dispatch(findFollowersThunk(uid))
         dispatch(findFollowingThunk(uid))
+        dispatch(findBookmarksByUserThunk(uid))
     }, [])
 
     return (
@@ -61,7 +64,7 @@ const PublicProfile = () => {
                             </div>
                             <div className="bg-light p-4 d-flex justify-content-end text-center">
                                 <ul className="list-inline mb-0">
-                                    <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">215</h5>
+                                    <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{bookmarks.length}</h5>
                                         <small className="text-muted"> <i className="fas fa-image mr-1"></i>Collections</small>
                                     </li>
                                     <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{followers.length}</h5>
@@ -73,7 +76,7 @@ const PublicProfile = () => {
                                 </ul>
                             </div>
 
-                            {publicProfile.role == 'FOODIE' &&
+                            {publicProfile.role === 'FOODIE' &&
                                 <div className="px-4 py-3"><h5 className="mb-0">About</h5>
                                     <div className="p-4 rounded shadow-sm bg-light">
                                         <p className="font-italic mb-0">Foodie Favorite:</p>
@@ -82,9 +85,12 @@ const PublicProfile = () => {
                                 </div>}
 
                             <div className="py-4 px-4">
-                                <div className="d-flex align-items-center justify-content-between mb-3"><h5
-                                    className="mb-0">Recent collections</h5><a href="#" className="btn btn-link text-muted">Show
-                                    all</a></div>
+                                <h5 className="mb-2">Recent collections</h5>
+                                <div className="p-3 rounded shadow-sm bg-light row">
+                                    {bookmarks && bookmarks.slice(0, 6).map((bookmark, index) =>
+                                        <BookmarkCard key={index} bookmark={bookmark}/>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
