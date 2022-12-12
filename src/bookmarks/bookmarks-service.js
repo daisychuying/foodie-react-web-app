@@ -8,8 +8,6 @@ const BOOKMARKS_API = 'https://foodie-node-server-app.herokuapp.com/api/bookmark
 const USER_BOOKMARKS_API = 'https://foodie-node-server-app.herokuapp.com/api/users'
 
 
-const api = axios.create({withCredentials: true});
-
 export const createBookmark = async (bookmark) => {
     const response = await api.post(BOOKMARKS_API, bookmark);
     return response.data;

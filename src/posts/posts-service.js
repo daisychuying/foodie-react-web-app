@@ -3,8 +3,6 @@ import axios from "axios";
 // const BASE_API_URL = 'http://localhost:4000/api'
 const BASE_API_URL = 'https://foodie-node-server-app.herokuapp.com/api'
 
-const api = axios.create({withCredentials: true});
-
 export const createPost = async (post) => {
     const response = await api.post(`${BASE_API_URL}/posts`, post)
     return response.data

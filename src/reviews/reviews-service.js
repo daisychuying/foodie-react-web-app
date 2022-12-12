@@ -8,8 +8,6 @@ const REVIEW_API = 'https://foodie-node-server-app.herokuapp.com/api/reviews';
 const RECIPE_REVIEW_API = 'https://foodie-node-server-app.herokuapp.com/api/recipes'
 
 
-const api = axios.create({withCredentials: true});
-
 export const createReview = async (review) => {
     const response = await api.post(REVIEW_API, review);
     return response.data;
