@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {useEffect} from "react";
 import {findFollowersThunk, findFollowingThunk, findUserHasFollowedThunk} from "../followers/follows-thunks";
 import BookmarkCard from "../bookmarks/bookmark-card";
+import {findBookmarksByUserThunk} from "../bookmarks/bookmarks-thunks";
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -21,6 +22,7 @@ const Profile = () => {
         if (currentUser){
             dispatch(findFollowersThunk(currentUser._id))
             dispatch(findFollowingThunk(currentUser._id))
+            dispatch(findBookmarksByUserThunk(currentUser._id))
         }
     }, [])
     return (
@@ -46,7 +48,7 @@ const Profile = () => {
                                     </div>
                                     <div className="bg-light p-4 d-flex justify-content-end text-center">
                                         <ul className="list-inline mb-0">
-                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">215</h5>
+                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{bookmarks.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-image mr-1"></i>Collections</small>
                                             </li>
                                             <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{followers.length}</h5>
@@ -57,14 +59,14 @@ const Profile = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    {currentUser.role == 'FOODIE' &&
+                                    {currentUser.role === 'FOODIE' &&
                                         <div className="px-4 py-3"><h5 className="mb-0">About</h5>
                                             <div className="p-4 rounded shadow-sm bg-light">
                                                 <p className="font-italic mb-0">Foodie Favorite:</p>
                                                 <p className="font-italic mb-0">{currentUser.foodieFavorite}</p>
                                             </div>
                                         </div>}
-                                    {currentUser.role == 'CHEF' &&
+                                    {currentUser.role === 'CHEF' &&
                                         <div className="px-4 py-3"><h5 className="mb-0">Chef Certificate:</h5>
                                             <div className="p-4 rounded shadow-sm bg-light">
                                                 <p className="font-italic mb-0">Chef Certificate:</p>
