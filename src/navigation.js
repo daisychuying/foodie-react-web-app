@@ -33,7 +33,19 @@ const Navigation = () => {
             <li className="nav-item">
                 <Link to='/profile/639399ae76a4f02a36b40cf5'
                       className={`nav-link`}>
-                    <span className="text-capitalize">Test</span>
+                    <span className="text-capitalize">Public Profile Test</span>
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to='/upload-post'
+                      className={`nav-link`}>
+                    <span className="text-capitalize">Upload Post Test</span>
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to='/all-posts'
+                      className={`nav-link`}>
+                    <span className="text-capitalize">Post Lists</span>
                 </Link>
             </li>
         </ul>

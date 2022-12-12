@@ -18,6 +18,10 @@ import bookmarksReducer from "./bookmarks/bookmarks-reducer";
 import EditProfile from "./users/edit-profile";
 import reviewsReducer from "./reviews/reviews-reducer";
 import followsReducer from "./followers/follows-reducer";
+import UploadPost from "./posts/upload-post";
+import postsReducer from "./posts/posts-reducer";
+import PostList from "./posts/postList";
+import PostDetail from "./posts/post-detail";
 
 const store = configureStore({
     reducer: {
@@ -26,6 +30,7 @@ const store = configureStore({
         bookmarks: bookmarksReducer,
         reviews: reviewsReducer,
         follows: followsReducer,
+        posts: postsReducer,
     }
 })
 
@@ -45,7 +50,10 @@ function App() {
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/profile/:uid" element={<PublicProfile />} />
                       <Route path="/edit-profile" element={<EditProfile />}/>
-                      {/* Recipes */}
+                      {/* Posts */}
+                      <Route path="/upload-post" element={<UploadPost />}/>
+                      <Route path="/all-posts" element={<PostList />}/>
+                      <Route path="/post-detail/:postID" element={<PostDetail />} />
                   </Routes>
               </BrowserRouter>
           </Provider>

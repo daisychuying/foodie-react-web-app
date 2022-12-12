@@ -29,16 +29,13 @@ export const profile = async () => {
 }
 
 export const findAllUsers = async () => {
-    const response = await axios.get(`${BASE_API_URL}/users`)
+    const response = await api.get(`${BASE_API_URL}/users`)
     return response.data
 }
 
-export const createUser = () => {
-
-}
 
 export const updateUser = async (updatedUser) => {
-    const response = await axios.put(`${BASE_API_URL}/users/${updatedUser._id}`, updatedUser)
+    const response = await api.put(`${BASE_API_URL}/users/${updatedUser._id}`, updatedUser)
     return updatedUser;
 }
 
