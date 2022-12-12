@@ -9,16 +9,16 @@ const RECIPE_REVIEW_API = 'https://foodie-node-server-app.herokuapp.com/api/reci
 
 
 export const createReview = async (review) => {
-    const response = await api.post(REVIEW_API, review);
+    const response = await axios.post(REVIEW_API, review);
     return response.data;
 }
 
 export const findReviewsByRecipe = async (recipeID) => {
-    const response = await api.get(`${RECIPE_REVIEW_API}/${recipeID}/reviews`);
+    const response = await axios.get(`${RECIPE_REVIEW_API}/${recipeID}/reviews`);
     return response.data;
 }
 
 export const deleteReview = async (reviewID) => {
-    await api.delete(`${REVIEW_API}/${reviewID}`);
+    await axios.delete(`${REVIEW_API}/${reviewID}`);
     return reviewID;
 }
