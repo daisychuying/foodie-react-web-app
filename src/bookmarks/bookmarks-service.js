@@ -1,7 +1,12 @@
 import axios from "axios";
 
-const BOOKMARKS_API = 'http://localhost:4000/api/bookmarks'
-const USER_BOOKMARKS_API = 'http://localhost:4000/api/users'
+// const BOOKMARKS_API = 'http://localhost:4000/api/bookmarks'
+// const USER_BOOKMARKS_API = 'http://localhost:4000/api/users'
+
+const BASE_API_URL = 'https://foodie-node-server-app.herokuapp.com/api'
+const BOOKMARKS_API = 'https://foodie-node-server-app.herokuapp.com/api/bookmarks'
+const USER_BOOKMARKS_API = 'https://foodie-node-server-app.herokuapp.com/api/users'
+
 
 const api = axios.create({withCredentials: true});
 
