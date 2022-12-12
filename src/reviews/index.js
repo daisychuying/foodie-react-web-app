@@ -11,11 +11,12 @@ const ReviewsList = () => {
     const [review, setReview] = useState('');
     const dispatch = useDispatch();
 
-    const handlePostReviewBtn = () => {
+    const handlePostReviewBtn = async () => {
         dispatch(createReviewThunk({
             review,
             recipeID,
         }))
+        setReview('');
     }
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const ReviewsList = () => {
             {currentUser &&
                 <>
                     <div className="mt-3 mb-5">
-                        <textarea className="form-control" onChange={(e) => setReview(e.target.value)}/>
+                        <textarea className="form-control" onChange={(e) => setReview(e.target.value)} value={review}/>
                         <button className="btn btn-primary float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
                     </div>
                     <br />
