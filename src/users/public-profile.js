@@ -53,13 +53,13 @@ const PublicProfile = () => {
         <div className="container">
             <HomeNav/>
             {publicProfile &&
-                <div className="row py-5 px-4">
-                    <div className="col-md-10 mx-auto">
+                <div className="row py-2">
+                    <div className="col-12 mx-auto">
                         <div className="bg-white shadow rounded overflow-hidden">
                             <div className="px-4 pt-3 pb-5 cover bg-warning">
                                 <div className="mb-5 text-black ">
-                                    <h4 className="mt-0 mb-0">{publicProfile.firstName} {publicProfile.lastName}</h4>
-                                    <p className="small mb-4">{publicProfile.role}</p>
+                                    <h1 className="mt-0 mb-0">{publicProfile.firstName} {publicProfile.lastName}</h1>
+                                    <h3 className="small mb-4">{publicProfile.role}</h3>
                                 </div>
 
                                 { currentUser && hasFollowed &&
