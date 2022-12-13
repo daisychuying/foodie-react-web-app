@@ -45,11 +45,10 @@ const HomePage = () => {
                             <div className="card-body d-flex flex-column align-items-start">
                                 <strong className="d-inline-block mb-2 text-success">Top Liked Recipe</strong>
                                 <h3 className="mb-0">
-                                    <a className="text-dark" href="#">Featured post</a>
+                                    <a className="text-dark" href="#">West Salad</a>
                                 </h3>
-                                <div className="mb-1 text-muted">Nov 12</div>
-                                <p className="card-text mb-auto">This is a wider card with supporting text below as a
-                                    natural lead-in to additional content.</p>
+                                <div className="mb-1 text-muted">Chef Ramsey</div>
+                                <p className="card-text mb-auto">This delicious salad will be a perfect everyday meal!</p>
                                 <a href="#">Continue reading</a>
                             </div>
                             <img className="card-img-right d-none d-md-block"
@@ -66,11 +65,10 @@ const HomePage = () => {
                             <div className="card-body d-flex flex-column align-items-start">
                                 <strong className="d-inline-block mb-2 text-success">Top Bookmarked Recipe</strong>
                                 <h3 className="mb-0">
-                                    <a className="text-dark" href="#">Post title</a>
+                                    <a className="text-dark" href="#">Margarita Castellane</a>
                                 </h3>
-                                <div className="mb-1 text-muted">Nov 11</div>
-                                <p className="card-text mb-auto">This is a wider card with supporting text below as a
-                                    natural lead-in to additional content.</p>
+                                <div className="mb-1 text-muted">Chef Simoooon</div>
+                                <p className="card-text mb-auto">Tired of Margarita pizza? Try this easy to make Margarita Castellane which will be ready in 30 mins. </p>
                                 <a href="#">Continue reading</a>
                             </div>
                             <img className="card-img-right flex-auto d-none d-md-block"

@@ -33,19 +33,18 @@ const Profile = () => {
     }, [])
     return (
         <div className="container">
-            <h1>Profile</h1>
             <HomeNav />
             {
                 currentUser &&
                 <div>
                     <div>
-                        <div className="row py-5 px-4">
-                            <div className="col-md-10 mx-auto">
+                        <div className="row py-2">
+                            <div className="col-12 mx-auto">
                                 <div className="bg-white shadow rounded overflow-hidden">
                                     <div className="px-4 pt-3 pb-5 cover bg-warning">
                                         <div className="mb-5 text-black">
-                                            <h4 className="mt-0 mb-0">{currentUser.firstName} {currentUser.lastName}</h4>
-                                            <p className="small mb-4">{currentUser.role}</p>
+                                            <h1 className="mt-0 mb-0">{currentUser.firstName} {currentUser.lastName}</h1>
+                                            <h3 className="small mb-4">{currentUser.role}</h3>
                                         </div>
                                         <div className="float-end">
                                             <Link to="/edit-profile" className="btn btn-secondary me-2">Edit Profile</Link>
@@ -53,7 +52,7 @@ const Profile = () => {
                                         </div>
 
                                     </div>
-                                    <div className="bg-light p-4 d-flex justify-content-end text-center">
+                                    <div className="bg-light p-3 d-flex justify-content-end text-center">
                                         <ul className="list-inline mb-0">
                                             <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{bookmarks.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-image mr-1"></i>Collections</small>
