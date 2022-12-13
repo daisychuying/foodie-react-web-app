@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createPostThunk, findAllPostsThunk, findPostByIDThunk} from "./posts-thunks";
+import {createPostThunk, findAllPostsThunk, findPostByIDThunk, findPostsByUserThunk} from "./posts-thunks";
 import postDetail from "./post-detail";
+import {findPostsByUser} from "./posts-service";
 
 const postsReducer = createSlice({
         name: 'posts',
@@ -17,6 +18,9 @@ const postsReducer = createSlice({
         },
         [findPostByIDThunk.fulfilled]: (state, action) => {
             state.postDetail = action.payload
+        },
+        [findPostsByUserThunk.fulfilled]: (state, action) => {
+            state.posts = action.payload
         }
         }
 })

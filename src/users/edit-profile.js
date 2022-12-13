@@ -14,20 +14,26 @@ const EditProfile = () => {
     const [email, setEmail] = useState(currentUser.email)
     const [password, setPassword] = useState(currentUser.password)
     const [foodieFav, setFoodieFav] = useState(currentUser.foodieFavorite)
+    const [introduction, setIntroduction] = useState(currentUser.introduction)
     const [role, setRole] = useState(currentUser.role)
+    const [error, setError] = useState('');
 
     const foodieFavs = ['CHINESE', 'JAPANESE','AMERICAN','ITALIAN','MEXICAN', 'SPANISH', 'THAI', 'FRENCH', 'KOREAN', 'BRITISH', 'MEDITERRANEAN', 'INDIAN', 'CARIBBEAN', 'GREEK', 'VIETNAMESE','AFRICAN'];
     const handleSaveButton = () => {
-        const newProfile = {
-            ...currentUser,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            foodieFavorite: foodieFav,
+        if (error == ''){
+            setError('Password cannot be empty')
+        } else {
+            const newProfile = {
+                ...currentUser,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                foodieFavorite: foodieFav,
+            }
+            dispatch(updateUserThunk(newProfile))
+            navigate('/profile')
         }
-        dispatch(updateUserThunk(newProfile))
-        navigate('/profile')
 
     }
     return (
@@ -50,6 +56,7 @@ const EditProfile = () => {
                                     </div>
                                     <div className="px-4 py-3">
                                         <h5 className="mb-1 ms-2">Profile Setting</h5>
+                                        {error && <h5 className="mb-1 ms-2 text-danger">{error}</h5>}
                                         <div className="p-4 rounded shadow-sm bg-light">
                                             <div className="mb-3">
                                                 <label htmlFor="firstName" className="form-label">First Name</label>

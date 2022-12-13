@@ -15,6 +15,7 @@ const usersReducer = createSlice({
         users: [],
         currentUser:null,
         publicProfile:null,
+        registrationError: false,
     },
     extraReducers: {
         [findAllUsersThunk.fulfilled]: (state, action) => {
@@ -37,9 +38,10 @@ const usersReducer = createSlice({
         },
         [registerThunk.fulfilled]:(state,action) => {
             state.currentUser = action.payload
+            state.registrationError = false
         },
         [registerThunk.rejected]:(state,action) => {
-            state.error = action.payload
+            state.registrationError = true
         }
     }
 })

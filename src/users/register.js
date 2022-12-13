@@ -15,19 +15,29 @@ const Register = () => {
     const [role, setRole] = useState('')
     const [certifiedChefID, setCertifiedChefID] = useState('')
     const [foodieFavorite, setFoodieFavorite] = useState('')
-    const {currentUser} = useSelector((state) => state.users)
+    const [introduction, setIntroduction] = useState('')
+    const {currentUser, registrationError} = useSelector((state) => state.users)
+
     const dispatch = useDispatch()
     const foodieType = ['CHINESE', 'JAPANESE','AMERICAN','ITALIAN','MEXICAN', 'SPANISH', 'THAI', 'FRENCH', 'KOREAN', 'BRITISH', 'MEDITERRANEAN', 'INDIAN', 'CARIBBEAN', 'GREEK', 'VIETNAMESE','AFRICAN']
     const options = ['FOODIE',"CHEF"]
-    const [selected, setSelected] = useState('Select your role')
+
     const handleRegisterBtn= () =>{
-        if(password !== validatePassword){
-            setError("Passwords must match")
-            return
+        if (username === '' || password === '' || email === ''){
+            setError('Username, password, and email cannot be null!')
+        } else if(password !== validatePassword){
+            setError("Passwords must match.")
+        } else if (role === ''){
+            setError("You need to choose a role to register an account.")
+        } else if (role === 'FOODIE' && foodieFavorite === ''){
+            setError('You need to select a favorite category before register an account.')
+        } else if (role === 'CHEF' && certifiedChefID === ''){
+            setError('You need to enter your certified chef ID to register an CHEF account.')
+        } else {
+            const newUser = {username, password, email, firstName, lastName, role, certifiedChefID,foodieFavorite, introduction}
+            dispatch(registerThunk(newUser))
+            navigate('/profile')
         }
-        setError(null)
-        const newUser = {username, password, email, firstName, lastName, role, certifiedChefID,foodieFavorite}
-        dispatch(registerThunk(newUser))
     }
 
     useEffect( () => {
@@ -49,53 +59,92 @@ const Register = () => {
                                     <div className="card-body p-4 p-md-5">
                                         <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
 
-                                        <form className="px-md-2">
-
+                                        <div className="px-md-2">
+                                            {
+                                                registrationError &&
+                                                <div className="alart text-danger">
+                                                    Username already existed.
+                                                </div>
+                                            }
                                             {
                                             error &&
-                                            <div className="alart alert-danger">
+                                            <div className="alart text-danger">
                                                 {error}
                                             </div>
                                             }
-                                            <label className ="mb-2">Username :</label>
-                                            <input
-                                                className="form-control mb-2"
-                                                value = {username}
-                                                onChange={(e) => setUsername(e.target.value)}/>
-                                            <label className ="mb-2">Password :</label>
-                                            <input
-                                                className="form-control mb-2"
-                                                value = {password}
-                                                onChange={(e) => setPassword(e.target.value)}/>
-                                            <label className ="mb-2">Re-enter your password :</label>
-                                            <input
-                                                className="form-control mb-2"
-                                                value={validatePassword}
-                                                onChange={(e)=> setValidatePassword(e.target.value)}/>
-                                            <label className ="mb-2">Email :</label>
-                                            <input
-                                                className="form-control mb-2"
-                                                value = {email}
-                                                onChange={(e) => setEmail(e.target.value)}/>
-                                            <label className ="mb-2">First Name :</label>
-                                            <input
-                                                className="form-control mb-2"
-                                                value = {firstName}
-                                                onChange={(e) => setFirstName(e.target.value)}/>
-                                            <label className ="mb-2">Last Name :</label>
-                                            <input
-                                                className="form-control mb-2"
-                                                value = {lastName}
-                                                onChange={(e) => setLastName(e.target.value)}/>
+                                            <div className="form-floating">
+                                                <input
+                                                    className="form-control form-floating mb-2 "
+                                                    value={username}
+                                                    id="username"
+                                                    placeholder="Username"
+                                                    onChange={(e) => setUsername(e.target.value)}/>
+                                                <label htmlFor="username">Username</label>
+                                            </div>
+                                            <div className="form-floating">
+                                                <input
+                                                    className="form-control mb-2"
+                                                    value={password}
+                                                    id='password'
+                                                    placeholder="Password"
+                                                    onChange={(e) => setPassword(e.target.value)}/>
+                                                <label htmlFor="password">Password</label>
+                                            </div>
+                                            <div className="form-floating">
+                                                <input
+                                                    className="form-control mb-2"
+                                                    value={validatePassword}
+                                                    id='validatePassword'
+                                                    placeholder="Re-enter your password"
+                                                    onChange={(e) => setValidatePassword(e.target.value)}/>
+                                                <label htmlFor="validatePassword">Re-enter your password</label>
+                                            </div>
+                                            <div className="form-floating">
+                                                <input
+                                                    className="form-control mb-2"
+                                                    value={email}
+                                                    id='email'
+                                                    placeholder="Email"
+                                                    onChange={(e) => setEmail(e.target.value)}/>
+                                                <label htmlFor="email">Email Address</label>
+                                            </div>
+                                            <div className="form-floating">
+                                                <input
+                                                    className="form-control mb-2"
+                                                    value={firstName}
+                                                    id='firstName'
+                                                    placeholder="First Name"
+                                                    onChange={(e) => setFirstName(e.target.value)}/>
+                                                <label htmlFor="firstName">First Name</label>
+                                            </div>
+                                            <div className="form-floating">
+                                                <input
+                                                    className="form-control mb-2"
+                                                    value={lastName}
+                                                    id='lastName'
+                                                    placeholder="Last Name"
+                                                    onChange={(e) => setLastName(e.target.value)}/>
+                                                <label htmlFor="lastName">Last Name</label>
+                                            </div>
+                                            <div className="form-floating">
+                                                <textarea
+                                                    className="form-control mb-2"
+                                                    value={introduction}
+                                                    id='introduction'
+                                                    placeholder="Introduction"
+                                                    onChange={(e) => setIntroduction(e.target.value)}/>
+                                                <label htmlFor="introduction">Introduction</label>
+                                            </div>
 
-                                            <label htmlFor="roles" className="mb-2">Choose a role:</label>
+                                            <label htmlFor="roles" className="mb-2 ms-1 mt-2 fw-bold">Choose a role:</label>
                                             <br/>
                                             <select
+                                                className="form-control"
                                                 value={role}
                                                 onChange={e => setRole(e.target.value)}>
-                                                <option key='0'>Please selection from the following</option>
-                                                {options.map((value) => (
-                                                    <option value={value} key={value}>
+                                                <option key='0' value=''>Please selection from the following</option>
+                                                {options.map((value, index) => (
+                                                    <option value={value} key={index}>
                                                         {value}
                                                     </option>
                                                 ))}
@@ -103,7 +152,7 @@ const Register = () => {
                                             {
                                                 role === 'CHEF'&&
                                                 <div>
-                                                    <label className ="mb-2">Your certified Chef ID :</label>
+                                                    <label className ="mb-2 ms-1 mt-2 fw-bold">Your certified Chef ID :</label>
                                                     <input
                                                         className="form-control mb-2"
                                                         value = {certifiedChefID}
@@ -113,14 +162,15 @@ const Register = () => {
                                             {
                                                 role ==='FOODIE'&&
                                                 <div>
-                                                    <label className ="mb-2">Your Favorite Food type :</label>
+                                                    <label className ="mb-2 ms-1 mt-2 fw-bold">Your Favorite Food type :</label>
                                                     <br/>
                                                     <select
+                                                        className="form-control"
                                                         value={foodieFavorite}
                                                         onChange={e => setFoodieFavorite(e.target.value)}>
-                                                        <option key='0'>Please selection from the following: </option>
-                                                        {foodieType.map((value) => (
-                                                            <option value={value} key={value}>
+                                                        <option key='0' value=''>Please selection from the following: </option>
+                                                        {foodieType.map((value, index) => (
+                                                            <option value={value} key={index}>
                                                                 {value}
                                                             </option>
                                                         ))}
@@ -129,17 +179,10 @@ const Register = () => {
                                             }
                                             <button
                                                 onClick={handleRegisterBtn}
-                                                className='btn btn-success w-100'>
+                                                className='btn btn-success w-100 mt-3'>
                                                 Register
                                             </button>
-
-                                            {
-                                                currentUser &&
-                                                <h2>Welcome  {currentUser.username}</h2>
-                                            }
-
-                                        </form>
-
+                                        </div>
                                     </div>
                             </div>
                         </div>

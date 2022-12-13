@@ -39,14 +39,14 @@ const Login = () => {
                                 <h1 className="h3 mb-3 mt-5 fw-normal text-center">Please sign in</h1>
                                  {
                                      error &&
-                                     <div className="alart alert-danger">
+                                     <div className="alart text-danger">
                                          {error}
                                      </div>
                                  }
                                  <div className="form-floating">
                                     <input
                                          className="form-control form-floating mb-2 "
-                                         value = {username}
+                                         value={username}
                                          id="floatingInput"
                                          placeholder="Username"
                                          onChange={(e) => setUsername(e.target.value)}/>
@@ -55,7 +55,7 @@ const Login = () => {
                                  <div className="form-floating">
                                      <input
                                          className="form-control mb-2"
-                                         value = {password}
+                                         value={password}
                                          placeholder="Password"
                                          onChange={(e) => setPassword(e.target.value)}/>
                                      <label htmlFor="floatingInput">Password</label>

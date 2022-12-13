@@ -1,17 +1,21 @@
 import {useDispatch, useSelector} from "react-redux";
-import {findUserByIdThunk, logoutThunk} from "./users-thunk";
+import {logoutThunk} from "./users-thunk";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
-import {findFollowersThunk, findFollowingThunk, findUserHasFollowedThunk} from "../followers/follows-thunks";
+import {findFollowersThunk, findFollowingThunk} from "../followers/follows-thunks";
 import BookmarkCard from "../bookmarks/bookmark-card";
 import {findBookmarksByUserThunk} from "../bookmarks/bookmarks-thunks";
+import {findPostsByUserThunk} from "../posts/posts-thunks";
+import PostCard from "../posts/post-card";
 
 const Profile = () => {
     const navigate = useNavigate()
     const {currentUser} = useSelector((state) => state.users)
     const {followers, following} = useSelector((state) => state.follows)
     const {bookmarks} = useSelector(state => state.bookmarks);
+    const {posts} = useSelector(state => state.posts);
+
     const dispatch = useDispatch()
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
@@ -23,6 +27,7 @@ const Profile = () => {
             dispatch(findFollowersThunk(currentUser._id))
             dispatch(findFollowingThunk(currentUser._id))
             dispatch(findBookmarksByUserThunk(currentUser._id))
+            dispatch(findPostsByUserThunk(currentUser._id))
         }
     }, [])
     return (
@@ -35,13 +40,13 @@ const Profile = () => {
                         <div className="row py-5 px-4">
                             <div className="col-md-10 mx-auto">
                                 <div className="bg-white shadow rounded overflow-hidden">
-                                    <div className="px-4 pt-3 pb-5 cover bg-black">
-                                        <div className="mb-5 text-white">
+                                    <div className="px-4 pt-3 pb-5 cover bg-warning">
+                                        <div className="mb-5 text-black">
                                             <h4 className="mt-0 mb-0">{currentUser.firstName} {currentUser.lastName}</h4>
                                             <p className="small mb-4">{currentUser.role}</p>
                                         </div>
                                         <div className="float-end">
-                                            <Link to="/edit-profile" className="btn btn-primary me-2">Edit Profile</Link>
+                                            <Link to="/edit-profile" className="btn btn-secondary me-2">Edit Profile</Link>
                                             <button className="btn btn-danger" onClick={handleLogoutBtn}> Logout </button>
                                         </div>
 
@@ -59,6 +64,12 @@ const Profile = () => {
                                             </li>
                                         </ul>
                                     </div>
+
+                                    <div className="px-4 py-3"><h5 className="mb-0">Introduction</h5>
+                                        <div className="p-4 rounded shadow-sm bg-light">
+                                            <p className="font-italic mb-0">{currentUser.introduction}</p>
+                                        </div>
+                                    </div>
                                     {currentUser.role === 'FOODIE' &&
                                         <div className="px-4 py-3"><h5 className="mb-0">About</h5>
                                             <div className="p-4 rounded shadow-sm bg-light">
@@ -67,15 +78,24 @@ const Profile = () => {
                                             </div>
                                         </div>}
                                     {currentUser.role === 'CHEF' &&
-                                        <div className="px-4 py-3"><h5 className="mb-0">Chef Certificate:</h5>
-                                            <div className="p-4 rounded shadow-sm bg-light">
-                                                <p className="font-italic mb-0">Chef Certificate:</p>
-                                                <p className="font-italic mb-0">{currentUser.certifiedChefID}</p>
+                                        <div>
+                                            <div className="px-4 py-3"><h5 className="mb-0">Recent Posts</h5>
+                                                <div className="p-3 ms-0 rounded shadow-sm bg-light row">
+                                                    {posts && posts.map((post, index) =>
+                                                        <PostCard key={index} post={post}/>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="px-4 py-3"><h5 className="mb-0">Chef Certificate Number</h5>
+                                                <div className="p-4 rounded shadow-sm bg-light">
+                                                    <p className="font-italic mb-0">{currentUser.certifiedChefID}</p>
+                                                </div>
                                             </div>
                                         </div>
+
                                     }
 
-                                    <div className="py-4 px-4">
+                                    <div className="py-4 px-4 ms-2">
                                         <h5 className="mb-2">All collections</h5>
                                         <div className="p-3 rounded shadow-sm bg-light row">
                                             {bookmarks && bookmarks.map((bookmark, index) =>
