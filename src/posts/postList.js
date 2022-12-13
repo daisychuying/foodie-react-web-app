@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {findAllPostsThunk} from "./posts-thunks";
 import PostCard from "./post-card";
 import HomeNav from "../home-nav";
+import {findRecipeBySearchTermThunk} from "../recipes/recipes-thunks";
 
 const PostList = () =>{
     const dispatch = useDispatch();
@@ -15,12 +16,21 @@ const PostList = () =>{
     return (
         <div className="container">
             <HomeNav />
-            <h1>
-                All Posts
-            </h1>
-            <button className="btn btn-primary float-end">Search</button>
-            <input className="form-control w-75" value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}/>
+            <div className="row jumbotron p-3 p-md-5 text-black rounded bg-warning mb-3">
+                <div className="col-3"></div>
+                <div className="px-0 col-6">
+                    <h1 className="display-4 font-italic mb-5 text-center">Search Chef's Recipes</h1>
+                    <div className="input-group">
+                        <button onClick={() => dispatch(findRecipeBySearchTermThunk(searchTerm))} className="btn btn-secondary float-end">Search</button>
+                        <input
+                            className="form-control w-75"
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value)
+                            }}
+                            value={searchTerm}/>
+                    </div>
+                </div>
+            </div>
             <div className="row mt-4">
                 {posts.map( post => <PostCard key={post._id} post={post}/> )}
             </div>

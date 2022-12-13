@@ -19,7 +19,7 @@ const RecipeList = () => {
             <div className="row jumbotron p-3 p-md-5 text-black rounded bg-warning mb-3">
                 <div className="col-3"></div>
                 <div className="px-0 col-6">
-                    <h1 className="display-4 font-italic mb-5 text-center">Search Foodie Recipes</h1>
+                    <h1 className="display-4 font-italic mb-5 text-center">Search Online Recipes</h1>
                     <div className="input-group">
                         <button onClick={() => dispatch(findRecipeBySearchTermThunk(searchTerm))} className="btn btn-secondary float-end">Search</button>
                         <input
