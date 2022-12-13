@@ -54,8 +54,9 @@ const HomePage = () => {
                             </div>
                             <img className="card-img-right d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="123"
-                                 width="30%"
-                                 height="50%"
+                                 // width="30%"
+                                 // height="50%"
+                                 width="200" height="220"
                                  src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80"
                                  data-holder-rendered="true"/>
                         </div>
@@ -74,8 +75,9 @@ const HomePage = () => {
                             </div>
                             <img className="card-img-right flex-auto d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
-                                 width="30%"
-                                 height="100%"
+                                 // width="30%"
+                                 // height="100%"
+                                 width="200" height="220"
                                  src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"
                                  data-holder-rendered="true"/>
                         </div>
@@ -95,8 +97,9 @@ const HomePage = () => {
                             </div>
                             <img className="card-img-right flex-auto d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
-                                 width="30%"
-                                 height="100%"
+                                 // width="30%"
+                                 // height="100%"
+                                 width="200" height="220"
                                  src={recipe.image}
                                  data-holder-rendered="true"/>
                         </div>

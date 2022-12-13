@@ -11,7 +11,10 @@ const BookmarkCard = ({bookmark}) => {
                     {bookmark.type === "POST" &&
                         <strong className="d-inline-block mb-2 text-primary">Chef Recipe</strong>}
                     <h4 className="mb-0">{bookmark.title}</h4>
-                    <div className="mb-1 text-muted mb-auto">Recipe ID: {bookmark.recipeID}</div>
+                    {bookmark.type === "ONLINE" &&
+                        <div className="mb-1 text-muted mb-auto">Recipe ID: {bookmark.recipeID}</div>}
+                    {bookmark.type === "POST" &&
+                        <div className="mb-1 text-muted mb-auto">Post ID: {bookmark.recipeID.substring(18)}</div>}
                     {bookmark.type === "ONLINE" &&
                         <Link to={`/details/${bookmark.recipeID}`} >View Recipe</Link>}
                     {bookmark.type === "POST" &&
