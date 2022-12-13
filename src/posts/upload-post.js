@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {createPostThunk} from "./posts-thunks";
 import {useNavigate} from "react-router";
+import HomeNav from "../home-nav";
 
 const UploadPost = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -56,59 +57,63 @@ const UploadPost = () => {
     }
 
     return (
-        <div className="container d-flex justify-content-center">
-            {currentUser &&
-                <div className="card rounded-3 w-75">
-                    <img
-                        src="https://media.glamour.com/photos/6232428d3cd68a607606b849/master/w_1600%2Cc_limit/factor%2520healthy%2520meal%2520delivery.png"
-                        className="w-100" alt="Sample photo"/>
-                    <div className="card-body">
-                        <div className="row">
-                            <div className="col col-10">
-                                <h3>{currentUser.firstName} {currentUser.lastName}</h3>
+        <div className="container">
+            <HomeNav/>
+            <div className="d-flex justify-content-center">
+                {currentUser &&
+                    <div className="card rounded-3 w-75">
+                        <img
+                            src="https://media.glamour.com/photos/6232428d3cd68a607606b849/master/w_1600%2Cc_limit/factor%2520healthy%2520meal%2520delivery.png"
+                            className="w-100" alt="Sample photo"/>
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col col-10">
+                                    <h3>{currentUser.firstName} {currentUser.lastName}</h3>
+                                </div>
+                                <div className="col col-2">
+                                    <button onClick={handlePostBtn} className="btn btn-primary float-end">Upload Post</button>
+                                </div>
                             </div>
-                            <div className="col col-2">
-                                <button onClick={handlePostBtn} className="btn btn-primary float-end">Upload Post</button>
-                            </div>
-                        </div>
-                        <div className="">
-                            {error &&
-                                <div className="alert alert-danger" role="alert">
-                                    Please fill all fields!
-                                </div>}
-                            <div className="form-floating">
-                                <input id="title" value={title} placeholder="Title" className="form-control form-floating mb-2"
-                                onChange={(e) => setTitle(e.target.value)}/>
-                                <label htmlFor="title">Title</label>
-                            </div>
-                            <div className="form-floating">
-                                <input id="readyInMinutes" value={readyInMinutes} placeholder="Ready In Minutes" className="form-control form-floating mb-2"
-                                onChange={(e) => setReadyInMinutes(e.target.value)}/>
-                                <label htmlFor="title">Ready In Minutes</label>
-                            </div>
-                            <div className="form-floating">
+                            <div className="">
+                                {error &&
+                                    <div className="alert alert-danger" role="alert">
+                                        Please fill all fields!
+                                    </div>}
+                                <div className="form-floating">
+                                    <input id="title" value={title} placeholder="Title" className="form-control form-floating mb-2"
+                                           onChange={(e) => setTitle(e.target.value)}/>
+                                    <label htmlFor="title">Title</label>
+                                </div>
+                                <div className="form-floating">
+                                    <input id="readyInMinutes" value={readyInMinutes} placeholder="Ready In Minutes" className="form-control form-floating mb-2"
+                                           onChange={(e) => setReadyInMinutes(e.target.value)}/>
+                                    <label htmlFor="title">Ready In Minutes</label>
+                                </div>
+                                <div className="form-floating">
                                 <textarea id="ingredients" value={ingredients} placeholder="Ingredients" className="form-control form-floating mb-2"
-                                onChange={(e) => setIngredients(e.target.value)}/>
-                                <label htmlFor="ingredients">Ingredients</label>
-                            </div>
-                            <div className="form">
-                                <label htmlFor="instructions">Instructions</label>
-                                <textarea id="instructions" value={instructions} placeholder="Instructions" className="form-control form-floating mb-2" rows={5}
-                                onChange={(e) => setInstructions(e.target.value)}/>
-                            </div>
-                            <div>
-                                <label htmlFor="image">Image Upload</label>
-                                <input onChange={handleFileInputChange} value={fileInput} type="file" id="image" className="form-control form-floating mb-2" />
-                                {previewSource &&
-                                    <img src={previewSource} alt="chosen" style={{height: '300px'}} />
-                                }
-                            </div>
+                                          onChange={(e) => setIngredients(e.target.value)}/>
+                                    <label htmlFor="ingredients">Ingredients</label>
+                                </div>
+                                <div className="form">
+                                    <label htmlFor="instructions">Instructions</label>
+                                    <textarea id="instructions" value={instructions} placeholder="Instructions" className="form-control form-floating mb-2" rows={5}
+                                              onChange={(e) => setInstructions(e.target.value)}/>
+                                </div>
+                                <div>
+                                    <label htmlFor="image">Image Upload</label>
+                                    <input onChange={handleFileInputChange} value={fileInput} type="file" id="image" className="form-control form-floating mb-2" />
+                                    {previewSource &&
+                                        <img src={previewSource} alt="chosen" style={{height: '300px'}} />
+                                    }
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
+
     )
 }
 

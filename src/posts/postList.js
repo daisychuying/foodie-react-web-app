@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {findAllPostsThunk} from "./posts-thunks";
 import PostCard from "./post-card";
+import HomeNav from "../home-nav";
 
 const PostList = () =>{
     const dispatch = useDispatch();
@@ -12,7 +13,8 @@ const PostList = () =>{
     }, [])
 
     return (
-        <>
+        <div className="container">
+            <HomeNav />
             <h1>
                 All Posts
             </h1>
@@ -22,7 +24,7 @@ const PostList = () =>{
             <div className="row mt-4">
                 {posts.map( post => <PostCard key={post._id} post={post}/> )}
             </div>
-        </>
+        </div>
     )
 }
 

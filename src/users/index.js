@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllUsersThunk} from "./users-thunk";
+import HomeNav from "../home-nav";
 
 const UserList = () => {
     const {users} = useSelector( (state) => state.users)
@@ -9,8 +10,9 @@ const UserList = () => {
         dispatch(findAllUsersThunk())
     },[])
         return (
-        <>
-            <h1>Users {users.length}</h1>
+        <div className="container">
+            <HomeNav />
+            <h1>All Users {users.length}</h1>
             <ul className="list-group">
                 {
                     users.map((user) =>
@@ -20,7 +22,7 @@ const UserList = () => {
                     )
                 }
             </ul>
-        </>
+        </div>
     )
 }
 

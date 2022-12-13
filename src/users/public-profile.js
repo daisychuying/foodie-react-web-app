@@ -13,6 +13,7 @@ import {findBookmarksByUserThunk} from "../bookmarks/bookmarks-thunks";
 import BookmarkCard from "../bookmarks/bookmark-card";
 import {findPostsByUserThunk} from "../posts/posts-thunks";
 import PostCard from "../posts/post-card";
+import HomeNav from "../home-nav";
 
 const PublicProfile = () => {
     const {uid} = useParams();
@@ -24,7 +25,7 @@ const PublicProfile = () => {
     const dispatch = useDispatch()
 
     const handleFollowBtn = () => {
-        if (currentUser && uid != currentUser._id){
+        if (currentUser && uid !== currentUser._id){
             dispatch(followUserThunk({
                 followed: uid,
                 follower: currentUser._id,
@@ -49,7 +50,8 @@ const PublicProfile = () => {
     }, [])
 
     return (
-        <div>
+        <div className="container">
+            <HomeNav/>
             {publicProfile &&
                 <div className="row py-5 px-4">
                     <div className="col-md-10 mx-auto">
@@ -64,7 +66,7 @@ const PublicProfile = () => {
                                     <div className="float-end">
                                         <button className="btn btn-info" onClick={handleUnfollowBtn} > UnFollow </button>
                                     </div>}
-                                { currentUser && !hasFollowed && (uid != currentUser._id) &&
+                                { currentUser && !hasFollowed && (uid !== currentUser._id) &&
                                     <div className="float-end">
                                         <button className="btn btn-info" onClick={handleFollowBtn}> Follow </button>
                                     </div>

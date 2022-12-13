@@ -8,6 +8,7 @@ import BookmarkCard from "../bookmarks/bookmark-card";
 import {findBookmarksByUserThunk} from "../bookmarks/bookmarks-thunks";
 import {findPostsByUserThunk} from "../posts/posts-thunks";
 import PostCard from "../posts/post-card";
+import HomeNav from "../home-nav";
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -33,6 +34,7 @@ const Profile = () => {
     return (
         <div className="container">
             <h1>Profile</h1>
+            <HomeNav />
             {
                 currentUser &&
                 <div>
