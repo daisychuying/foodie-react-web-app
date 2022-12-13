@@ -4,7 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 
 // Import Components
-import UserList from "./users";
+import UserList from "./users/userList";
 import Recipes from "./recipes";
 import Navigation from "./navigation";
 import Login from "./users/login";

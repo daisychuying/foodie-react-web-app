@@ -20,7 +20,7 @@ const PublicProfile = () => {
     const {publicProfile, currentUser} = useSelector((state) => state.users)
     const {followers, following, hasFollowed} = useSelector((state) => state.follows)
     const {bookmarks} = useSelector(state => state.bookmarks);
-    const {posts} = useSelector(state => state.posts);
+    const {postsByUser} = useSelector(state => state.posts);
 
     const dispatch = useDispatch()
 
@@ -103,7 +103,7 @@ const PublicProfile = () => {
                             {publicProfile.role === 'CHEF' &&
                                 <div className="px-4 py-3"><h5 className="mb-0">Recent Posts</h5>
                                     <div className="p-3 ms-0 rounded shadow-sm bg-light row">
-                                        {posts && posts.slice(0, 6).map((post, index) =>
+                                        {postsByUser && postsByUser.slice(0, 6).map((post, index) =>
                                             <PostCard key={index} post={post}/>
                                         )}
                                     </div>

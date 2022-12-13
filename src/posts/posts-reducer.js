@@ -7,7 +7,8 @@ const postsReducer = createSlice({
     name: 'posts',
     initialState: {
         posts: [],
-        postDetail: null
+        postDetail: null,
+        postsByUser: []
     },
     extraReducers: {
         [createPostThunk.fulfilled]: (state, action) => {
@@ -20,7 +21,7 @@ const postsReducer = createSlice({
             state.postDetail = action.payload
         },
         [findPostsByUserThunk.fulfilled]: (state, action) => {
-            state.posts = action.payload
+            state.postsByUser = action.payload
         },
         [deletePostThunk.fulfilled]: (state, {payload}) => {
             state.posts = state.posts.filter(p => p._id !== payload);

@@ -1,4 +1,4 @@
-import {findRecipeById, findRecipeBySearchTerm, getRandomRecipes} from "./recipes-service";
+import {findRecipeById, findRecipeBySearchTerm, getRandomTwoRecipes, getRandomRecipes} from "./recipes-service";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const findRecipeBySearchTermThunk = createAsyncThunk (
@@ -11,4 +11,8 @@ export const findRecipeByIdThunk = createAsyncThunk (
 
 export const getRandomRecipesThunk = createAsyncThunk (
     'getRandomRecipes', () => getRandomRecipes()
+)
+
+export const getRandomTwoRecipesThunk = createAsyncThunk(
+    'getRandomOneRecipe', () => getRandomTwoRecipes()
 )

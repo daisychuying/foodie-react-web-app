@@ -23,20 +23,18 @@ const Register = () => {
     const foodieType = ['CHINESE', 'JAPANESE','AMERICAN','ITALIAN','MEXICAN', 'SPANISH', 'THAI', 'FRENCH', 'KOREAN', 'BRITISH', 'MEDITERRANEAN', 'INDIAN', 'CARIBBEAN', 'GREEK', 'VIETNAMESE','AFRICAN']
     const options = ['FOODIE',"CHEF"]
 
-    const handleRegisterBtn= () =>{
+    const handleRegisterBtn= async () =>{
         if (username === '' || password === '' || email === ''){
             setError('Username, password, and email cannot be null!')
         } else if(password !== validatePassword){
             setError("Passwords must match.")
         } else if (role === ''){
             setError("You need to choose a role to register an account.")
-        } else if (role === 'FOODIE' && foodieFavorite === ''){
-            setError('You need to select a favorite category before register an account.')
         } else if (role === 'CHEF' && certifiedChefID === ''){
             setError('You need to enter your certified chef ID to register an CHEF account.')
         } else {
             const newUser = {username, password, email, firstName, lastName, role, certifiedChefID,foodieFavorite, introduction}
-            dispatch(registerThunk(newUser))
+            await dispatch(registerThunk(newUser))
             navigate('/profile')
         }
     }

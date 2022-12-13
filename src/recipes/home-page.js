@@ -1,8 +1,20 @@
 import HomeNav from "../home-nav";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {getRandomTwoRecipesThunk} from "./recipes-thunks";
 
 const HomePage = () => {
     const categories = ["chinese", "japanese", "american", "italian", "mexican", "spanish", "thai", "korean", "british", "mediterranean", "indian", "viet"];
+    const {recipes} = useSelector(state => state.recipes);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        // dispatch(getRandomRecipesThunk())
+        dispatch(getRandomTwoRecipesThunk())
+    }, [])
+
+    console.log(recipes)
     return(
         <>
             <div className="container">
@@ -18,9 +30,8 @@ const HomePage = () => {
                 <div className="row jumbotron p-3 p-md-5 text-black rounded bg-warning mb-3">
                     <div className="col-md-5 px-0">
                         <h1 className="display-4 font-italic mb-5">Join Foodie Book Today For More Recipes!</h1>
-                        <p className="lead my-3">Multiple lines of text that form the lede, informing new readers
-                            quickly and efficiently about what's most interesting in this post's contents.</p>
-                        <p className="lead mb-0"><a href="#" className="text-black font-weight-bold">Click here to sign up</a></p>
+                        <p className="lead my-3">Yes! You can find everything you need to be a professional cook in this page. </p>
+                        <p className="lead mb-0"><Link to="/register" className="text-black font-weight-bold">Click here to sign up</Link></p>
                     </div>
                     <div className="col-7">
                         <img src="https://www.flavcity.com/wp-content/uploads/2018/05/healthy-meal-prep-recipes.jpg" width="100%" alt=''/>
@@ -69,6 +80,28 @@ const HomePage = () => {
                                  data-holder-rendered="true"/>
                         </div>
                     </div>
+                </div>
+                <h2>Random Recipes</h2>
+                <div className="row mb-2 mt-2">
+                    {recipes.map((recipe) => <div className="col-md-6">
+                        <div className="card flex-md-row mb-4 box-shadow h-md-250">
+                            <div className="card-body d-flex flex-column align-items-start">
+                                <strong className="d-inline-block mb-2 text-success">Random Recipe</strong>
+                                <h3 className="mb-0">
+                                    <a className="text-dark" href="#">{recipe.title}</a>
+                                </h3>
+                                <p className="card-text mb-auto">Explore a new recipe for the day</p>
+                                <Link to={`/details/${recipe.id}`}>Continue reading</Link>
+                            </div>
+                            <img className="card-img-right flex-auto d-none d-md-block"
+                                 data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
+                                 width="30%"
+                                 height="100%"
+                                 src={recipe.image}
+                                 data-holder-rendered="true"/>
+                        </div>
+                    </div>)}
+
                 </div>
             </div>
         </>
