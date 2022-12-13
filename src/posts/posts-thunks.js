@@ -1,5 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {createPost, findAllPosts, findPostByID, findPostsByUser, deletePost} from "./posts-service";
+import {
+    createPost,
+    findAllPosts,
+    findPostByID,
+    findPostsByUser,
+    deletePost,
+    findPostBySearchTerm
+} from "./posts-service";
 
 export const createPostThunk = createAsyncThunk(
     'createPost',
@@ -24,4 +31,9 @@ export const findPostsByUserThunk = createAsyncThunk(
 export const deletePostThunk = createAsyncThunk(
     'deletePost',
     async (postID) => await deletePost(postID)
+)
+
+export const findPostBySearchTermThunk = createAsyncThunk(
+    'findPostBySearchTerm',
+    async (searchTerm) => await findPostBySearchTerm(searchTerm)
 )

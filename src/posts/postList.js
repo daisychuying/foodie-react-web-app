@@ -1,9 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {findAllPostsThunk} from "./posts-thunks";
+import {findAllPostsThunk, findPostBySearchTermThunk} from "./posts-thunks";
 import PostCard from "./post-card";
 import HomeNav from "../home-nav";
-import {findRecipeBySearchTermThunk} from "../recipes/recipes-thunks";
+
 
 const PostList = () =>{
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const PostList = () =>{
                 <div className="px-0 col-6">
                     <h1 className="display-4 font-italic mb-5 text-center">Search Chef's Recipes</h1>
                     <div className="input-group">
-                        <button onClick={() => dispatch(findRecipeBySearchTermThunk(searchTerm))} className="btn btn-secondary float-end">Search</button>
+                        <button onClick={() => dispatch(findPostBySearchTermThunk(searchTerm))} className="btn btn-secondary float-end">Search</button>
                         <input
                             className="form-control w-75"
                             onChange={(e) => {
@@ -32,7 +32,8 @@ const PostList = () =>{
                 </div>
             </div>
             <div className="row mt-4">
-                {posts.map( post => <PostCard key={post._id} post={post}/> )}
+                {posts.length === 0 && <h4 className="text-center alert alert-info">Sorry no post found!</h4>}
+                {posts && posts.map( post => <PostCard key={post._id} post={post}/> )}
             </div>
         </div>
     )

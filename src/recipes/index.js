@@ -10,7 +10,7 @@ const RecipeList = () => {
     const {recipes} = useSelector(state => state.recipes);
 
     useEffect(() => {
-        // dispatch(getRandomRecipesThunk())
+        dispatch(getRandomRecipesThunk())
     }, [])
 
     return (
