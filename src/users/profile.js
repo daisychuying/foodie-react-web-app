@@ -112,8 +112,20 @@ const Profile = () => {
                 </div>
             }
             { !currentUser &&
-                <div>
-                    <h2>Please Login to access your personal profile.</h2>
+                <div className="container py-5 h-100">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-lg-8 col-xl-6">
+                            <div className="card rounded-3">
+                                <img
+                                    src="https://media.glamour.com/photos/6232428d3cd68a607606b849/master/w_1600%2Cc_limit/factor%2520healthy%2520meal%2520delivery.png"
+                                    className="w-100"
+                                    alt="Sample photo"/>
+                                <div className="card-body p-4 p-md-5">
+                                    <h1 className="h3 mb-3 mt-5 fw-normal text-center">Please sign in to access your personal profile.</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
         </div>

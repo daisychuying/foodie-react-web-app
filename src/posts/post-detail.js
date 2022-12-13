@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {deletePostThunk, findPostByIDThunk} from "./posts-thunks";
 import {Link} from "react-router-dom";
 import {createBookmarkThunk, deleteBookmarkThunk, findUserHasBookmarkedThunk} from "../bookmarks/bookmarks-thunks";
+import HomeNav from "../home-nav";
 
 const PostDetail = () => {
     const {postID} = useParams();
@@ -46,7 +47,7 @@ const PostDetail = () => {
 
     return (
         <div className="container my-4">
-            <h1>Post Detail</h1>
+            <HomeNav/>
             {postDetail &&
                 <div className="row">
                     <div className="col-5">

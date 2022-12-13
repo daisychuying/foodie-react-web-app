@@ -1,6 +1,9 @@
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import CurrentUser from "./users/current-user";
 
 const HomeNav = () => {
+    const {currentUser} = useSelector(state => state.users)
   return(
       <>
           <header className="blog-header py-3 pb-0">
@@ -12,7 +15,10 @@ const HomeNav = () => {
                   </div>
                   <div className="col-4 d-flex justify-content-end align-items-center">
                       <Link className="btn btn-lg" to="/login" title="profile" ><i className="bi bi-person-circle fa-5x me-3"></i>  </Link>
-                      <Link className="btn btn-lg btn-outline-secondary" to="/register" role="button">Sign up</Link>
+                      {currentUser && currentUser.role === 'ADMIN' && <Link to="/users" className="btn btn-lg btn-outline-secondary" role="button">Users List</Link>}
+                      {currentUser && currentUser.role === 'CHEF' && <Link to="/upload-post" className="btn btn-lg btn-outline-secondary" role="button">Upload Post</Link>}
+                      {(!currentUser || (currentUser && currentUser.role === 'FOODIE') )&& <Link to="/register" className="btn btn-lg btn-outline-secondary" role="button">Sign Up</Link>}
+
                   </div>
               </div>
               <div className="row pb-0">

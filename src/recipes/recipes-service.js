@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const APIKEY = 'apiKey=b4acd4eb87e644f5b8f9ae2fdac2c751';
-const APIKEY = 'apiKey=ee417be1ca4741b79cfb938e9a71b1f0';
+const APIKEY = 'apiKey=b4acd4eb87e644f5b8f9ae2fdac2c751';
+// const APIKEY = 'apiKey=ee417be1ca4741b79cfb938e9a71b1f0';
 
 const SEARCH_URL = `https://api.spoonacular.com/recipes/complexSearch?${APIKEY}&query=`
 const DETAIL_URL = 'https://api.spoonacular.com/recipes/'

@@ -41,7 +41,7 @@ function App() {
       <div className="container mt-4 mb-4">
           <Provider store={store}>
               <BrowserRouter>
-                  <Navigation />
+                  {/*<Navigation />*/}
                   <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/search" element={<Recipes />} />

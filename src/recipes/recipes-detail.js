@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findRecipeByIdThunk} from "./recipes-thunks";
 import {createBookmarkThunk, deleteBookmarkThunk, findUserHasBookmarkedThunk} from "../bookmarks/bookmarks-thunks";
 import ReviewsList from "../reviews";
+import HomeNav from "../home-nav";
 
 const RecipesDetail = () => {
     const {recipeID} = useParams();
@@ -42,6 +43,7 @@ const RecipesDetail = () => {
 
     return (
         <div className="container my-4">
+            <HomeNav />
             <div className="row">
                 <div className="col-5">
                     <img className="img-fluid" src={details.image}  alt={details.title} />

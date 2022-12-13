@@ -4,6 +4,7 @@ import RecipeCard from "./recipe-card";
 import {useParams} from "react-router";
 import {findRecipeBySearchTermThunk} from "./recipes-thunks";
 import HomeNav from "../home-nav";
+import {Link} from "react-router-dom";
 
 const RecipeByCategory = () => {
     const dispatch = useDispatch();
@@ -20,18 +21,18 @@ const RecipeByCategory = () => {
                 <HomeNav/>
                 <div className="nav-scroller py-1 mb-2">
                     <nav className="nav d-flex justify-content-between">
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/chinese" role="button">Chinese</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/japanese" role="button">Japanese</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/american" role="button">American</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/italian" role="button">Italian</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/mexican" role="button">Mexican</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/spanish" role="button">Spanish</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/thai" role="button">Thai</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/korean" role="button">Korean</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/british" role="button">British</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/mediterranean" role="button">Mediterranean</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/indian" role="button">Indian</a>
-                        <a className="h5 p-2 text-black text-decoration-none" href="/search/viet" role="button">Viet</a>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/chinese" role="button">Chinese</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/japanese" role="button">Japanese</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/american" role="button">American</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/italian" role="button">Italian</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/mexican" role="button">Mexican</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/spanish" role="button">Spanish</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/thai" role="button">Thai</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/korean" role="button">Korean</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/british" role="button">British</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/mediterranean" role="button">Mediterranean</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/indian" role="button">Indian</Link>
+                        <Link className="h5 p-2 text-black text-decoration-none" to="/search/viet" role="button">Viet</Link>
                     </nav>
                 </div>
                 <div className="row mt-4">
