@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {findRecipeBySearchTermThunk, getRandomRecipesThunk} from "./recipes-thunks";
 import RecipeCard from "./recipe-card";
+import HomeNav from "../home-nav";
 
 const RecipeList = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const RecipeList = () => {
 
     return (
         <>
+            <HomeNav/>
             <div className="row jumbotron p-3 p-md-5 text-black rounded bg-warning mb-3">
                 <div className="col-3"></div>
                 <div className="px-0 col-6">

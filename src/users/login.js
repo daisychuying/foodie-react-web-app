@@ -2,6 +2,7 @@ import {loginThunk} from "./users-thunk";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
+import HomeNav from "../home-nav";
 
 
 const Login = () => {
@@ -26,6 +27,7 @@ const Login = () => {
 
     return (
         <>
+            <HomeNav/>
             <section className="h-100 h-custom">
                 <div className="container py-5 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
