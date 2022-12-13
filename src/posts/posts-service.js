@@ -27,3 +27,8 @@ export const deletePost = async (postID) => {
     await axios.delete(`${BASE_API_URL}/posts/${postID}`);
     return postID;
 }
+
+export const findPostBySearchTerm = async (searchTerm) => {
+    const response = await axios.get(`${BASE_API_URL}/posts/search/${searchTerm}`)
+    return response.data;
+}

@@ -10,11 +10,9 @@ const HomePage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(getRandomRecipesThunk())
         dispatch(getRandomTwoRecipesThunk())
     }, [])
 
-    console.log(recipes)
     return(
         <>
             <div className="container">
