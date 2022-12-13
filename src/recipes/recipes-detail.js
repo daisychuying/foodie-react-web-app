@@ -14,9 +14,11 @@ const RecipesDetail = () => {
 
     const handleBookmarkBtn = () => {
         dispatch(createBookmarkThunk({
+            user: currentUser._id,
             recipeID,
             image: details.image,
             title: details.title,
+            type: "ONLINE"
         }))
     }
 

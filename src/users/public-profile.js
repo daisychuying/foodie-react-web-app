@@ -100,7 +100,7 @@ const PublicProfile = () => {
                             {publicProfile.role === 'CHEF' &&
                                 <div className="px-4 py-3"><h5 className="mb-0">Recent Posts</h5>
                                     <div className="p-3 ms-0 rounded shadow-sm bg-light row">
-                                        {posts && posts.map((post, index) =>
+                                        {posts && posts.slice(0, 6).map((post, index) =>
                                             <PostCard key={index} post={post}/>
                                         )}
                                     </div>

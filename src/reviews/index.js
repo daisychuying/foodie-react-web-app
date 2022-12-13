@@ -13,6 +13,7 @@ const ReviewsList = () => {
 
     const handlePostReviewBtn = async () => {
         dispatch(createReviewThunk({
+            author: currentUser._id,
             review,
             recipeID,
         }))
@@ -21,7 +22,7 @@ const ReviewsList = () => {
 
     useEffect(() => {
         dispatch(findReviewsByRecipeThunk(recipeID));
-    })
+    }, [])
 
     return (
         <div className="ms-5">
@@ -39,7 +40,7 @@ const ReviewsList = () => {
                 {reviews && reviews.map((review, index) =>
                     <li key={index} className="list-group-item">
                         {review.review}
-                        {currentUser && review.author._id === currentUser._id &&
+                        {currentUser && (review.author._id === currentUser._id || currentUser.role === "ADMIN") &&
                         <button onClick={() => dispatch(deleteReviewThunk(review._id))} className="btn btn-sm btn-danger float-end mx-2">Delete</button>}
                         <Link to={`/profile/${review.author._id}`} className="float-end">{review.author.username}</Link>
                     </li>
