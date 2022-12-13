@@ -27,6 +27,7 @@ const PublicProfile = () => {
         if (currentUser && uid != currentUser._id){
             dispatch(followUserThunk({
                 followed: uid,
+                follower: currentUser._id,
             }))
         }
     }

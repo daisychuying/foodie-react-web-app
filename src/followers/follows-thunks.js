@@ -9,7 +9,7 @@ import {
 
 export const followUserThunk = createAsyncThunk(
     'followUser',
-    async (follow) => followUser(follow)
+    async (follow) => await followUser(follow)
 )
 
 export const findFollowersThunk = createAsyncThunk(
