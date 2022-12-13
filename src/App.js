@@ -10,6 +10,7 @@ import Navigation from "./navigation";
 import Login from "./users/login";
 import Register from "./users/register";
 import Profile from "./users/profile";
+import HomePage from "./recipes/home-page";
 import PublicProfile from "./users/public-profile";
 import usersReducer from "./users/users-reducer";
 import recipesReducer from "./recipes/recipes-reducer";
@@ -22,6 +23,7 @@ import UploadPost from "./posts/upload-post";
 import postsReducer from "./posts/posts-reducer";
 import PostList from "./posts/postList";
 import PostDetail from "./posts/post-detail";
+import RecipeByCategory from "./recipes/recipe-category";
 
 const store = configureStore({
     reducer: {
@@ -41,7 +43,8 @@ function App() {
               <BrowserRouter>
                   <Navigation />
                   <Routes>
-                      <Route path="/" element={<Recipes />} />
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/search" element={<Recipes />} />
                       <Route path="/details/:recipeID" element={<RecipesDetail />} />
                       {/* Users */}
                       <Route path="/login" element={<Login />} />
@@ -54,6 +57,8 @@ function App() {
                       <Route path="/upload-post" element={<UploadPost />}/>
                       <Route path="/all-posts" element={<PostList />}/>
                       <Route path="/post-detail/:postID" element={<PostDetail />} />
+                      {/* Recipe by Category*/}
+                      <Route path="/search/:category" element={<RecipeByCategory />}/>
                   </Routes>
               </BrowserRouter>
           </Provider>

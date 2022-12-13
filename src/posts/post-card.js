@@ -12,7 +12,7 @@ const PostCard = ({post}) => {
                     <Link to={`/post-detail/${post._id}`} >View Post</Link>
                 </div>
                 <div className="col-auto d-none d-lg-block">
-                    {/*<img className="" width="200" height="250" src={recipe.image} />*/}
+                    <img width="200" height="250" src={post.image} />
                 </div>
             </div>
         </div>

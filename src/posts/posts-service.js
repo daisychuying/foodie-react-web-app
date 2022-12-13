@@ -22,3 +22,8 @@ export const findPostsByUser = async (uid) => {
     const response = await axios.get(`${BASE_API_URL}/posts/users/${uid}`)
     return response.data
 }
+
+export const deletePost = async (postID) => {
+    await axios.delete(`${BASE_API_URL}/posts/${postID}`);
+    return postID;
+}

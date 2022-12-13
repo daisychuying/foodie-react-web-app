@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {createPostThunk} from "./posts-thunks";
+import {useNavigate} from "react-router";
 
 const UploadPost = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -9,16 +10,49 @@ const UploadPost = () => {
     let [readyInMinutes, setReadyInMinutes] = useState('');
     let [instructions, setInstructions] = useState('');
 
+    const [error, setError] = useState(false);
+    const [fileInput, setFileInput] = useState('');
+    const [selectedFile, setSelectedFile] = useState('');
+    const [previewSource, setPreviewSource] = useState('');
+
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const handlePostBtn = () => {
+        if (!previewSource || !title || !ingredients || !readyInMinutes || !instructions) {
+            setError(true);
+            return;
+        }
+        const image = uploadImage(previewSource)
         const newPost = {
             title: title,
+            author: currentUser._id,
             ingredients: ingredients,
             readyInMinutes: readyInMinutes,
-            instructions: instructions
+            instructions: instructions,
+            image: image,
         }
         dispatch(createPostThunk(newPost))
+        navigate("/all-posts");
+    }
+
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0];
+        previewFile(file);
+        setSelectedFile(file);
+        setFileInput(e.target.value)
+    }
+
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setPreviewSource(reader.result)
+        }
+    }
+
+    const uploadImage = (base64EncodedImage) => {
+        return base64EncodedImage;
     }
 
     return (
@@ -38,6 +72,10 @@ const UploadPost = () => {
                             </div>
                         </div>
                         <div className="">
+                            {error &&
+                                <div className="alert alert-danger" role="alert">
+                                    Please fill all fields!
+                                </div>}
                             <div className="form-floating">
                                 <input id="title" value={title} placeholder="Title" className="form-control form-floating mb-2"
                                 onChange={(e) => setTitle(e.target.value)}/>
@@ -53,10 +91,17 @@ const UploadPost = () => {
                                 onChange={(e) => setIngredients(e.target.value)}/>
                                 <label htmlFor="ingredients">Ingredients</label>
                             </div>
-                            <div className="form-floating">
-                                <textarea id="instructions" value={instructions} placeholder="Instructions" className="form-control form-floating mb-2"
-                                onChange={(e) => setInstructions(e.target.value)}/>
+                            <div className="form">
                                 <label htmlFor="instructions">Instructions</label>
+                                <textarea id="instructions" value={instructions} placeholder="Instructions" className="form-control form-floating mb-2" rows={5}
+                                onChange={(e) => setInstructions(e.target.value)}/>
+                            </div>
+                            <div>
+                                <label htmlFor="image">Image Upload</label>
+                                <input onChange={handleFileInputChange} value={fileInput} type="file" id="image" className="form-control form-floating mb-2" />
+                                {previewSource &&
+                                    <img src={previewSource} alt="chosen" style={{height: '300px'}} />
+                                }
                             </div>
 
                         </div>

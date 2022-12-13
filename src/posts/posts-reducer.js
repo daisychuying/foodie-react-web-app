@@ -1,17 +1,17 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createPostThunk, findAllPostsThunk, findPostByIDThunk, findPostsByUserThunk} from "./posts-thunks";
-import postDetail from "./post-detail";
-import {findPostsByUser} from "./posts-service";
+import {createPostThunk, findAllPostsThunk, findPostByIDThunk, findPostsByUserThunk, deletePostThunk} from "./posts-thunks";
+// import postDetail from "./post-detail";
+// import {createPostThunk, deletePostThunk, findAllPostsThunk, findPostByIDThunk} from "./posts-thunks";
 
 const postsReducer = createSlice({
-        name: 'posts',
-        initialState: {
-            posts: [],
-            postDetail: null
-        },
+    name: 'posts',
+    initialState: {
+        posts: [],
+        postDetail: null
+    },
     extraReducers: {
         [createPostThunk.fulfilled]: (state, action) => {
-            state.posts.push(action.payload)
+            state.posts.unshift(action.payload)
         },
         [findAllPostsThunk.fulfilled]: (state, action) => {
             state.posts = action.payload
@@ -21,8 +21,12 @@ const postsReducer = createSlice({
         },
         [findPostsByUserThunk.fulfilled]: (state, action) => {
             state.posts = action.payload
+        },
+        [deletePostThunk.fulfilled]: (state, {payload}) => {
+            state.posts = state.posts.filter(p => p._id !== payload);
         }
-        }
+    }
+
 })
 
 export default postsReducer.reducer

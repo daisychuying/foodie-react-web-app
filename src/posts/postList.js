@@ -7,7 +7,6 @@ const PostList = () =>{
     const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState('');
     const {posts} = useSelector(state => state.posts);
-
     useEffect( () => {
         dispatch(findAllPostsThunk())
     }, [])
