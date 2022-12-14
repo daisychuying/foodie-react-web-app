@@ -1,4 +1,10 @@
-import {findRecipeById, findRecipeBySearchTerm, getRandomTwoRecipes, getRandomRecipes} from "./recipes-service";
+import {
+    findRecipeById,
+    findRecipeBySearchTerm,
+    getRandomTwoRecipes,
+    getRandomRecipes,
+    getFoodieRecommendRecipes, getAdminChoiceRecipes
+} from "./recipes-service";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const findRecipeBySearchTermThunk = createAsyncThunk (
@@ -15,4 +21,12 @@ export const getRandomRecipesThunk = createAsyncThunk (
 
 export const getRandomTwoRecipesThunk = createAsyncThunk(
     'getRandomOneRecipe', () => getRandomTwoRecipes()
+)
+
+export const getFoodieRecommendRecipesThunk = createAsyncThunk(
+    'getFoodieRecommendRecipes', (fav) => getFoodieRecommendRecipes(fav)
+)
+
+export const getAdminChoiceRecipesThunk = createAsyncThunk(
+    'getAdminChoiceRecipes', () => getAdminChoiceRecipes()
 )

@@ -3,7 +3,7 @@ import {
     findRecipeByIdThunk,
     findRecipeBySearchTermThunk,
     getRandomTwoRecipesThunk,
-    getRandomRecipesThunk
+    getRandomRecipesThunk, getFoodieRecommendRecipesThunk, getAdminChoiceRecipesThunk
 } from "./recipes-thunks";
 
 const initialState = {
@@ -25,8 +25,14 @@ const recipesReducder = createSlice({
             state.recipes = action.payload;
         },
         [getRandomTwoRecipesThunk.fulfilled]: (state, action) => {
-            state.recipes = action.payload
+            state.recipes = action.payload;
         },
+        [getFoodieRecommendRecipesThunk.fulfilled]: (state, action) => {
+            state.recipes = action.payload;
+        },
+        [getAdminChoiceRecipesThunk.fulfilled]: (state, action) => {
+            state.details = action.payload;
+        }
     }
 })
 

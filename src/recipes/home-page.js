@@ -2,15 +2,24 @@ import HomeNav from "../home-nav";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {getRandomTwoRecipesThunk} from "./recipes-thunks";
+import {getAdminChoiceRecipesThunk, getFoodieRecommendRecipesThunk, getRandomTwoRecipesThunk} from "./recipes-thunks";
+import {findTopBookmarkedThunk} from "../bookmarks/bookmarks-thunks";
 
 const HomePage = () => {
     const categories = ["chinese", "japanese", "american", "italian", "mexican", "spanish", "thai", "korean", "british", "mediterranean", "indian", "viet"];
-    const {recipes} = useSelector(state => state.recipes);
+    const {recipes, details} = useSelector(state => state.recipes);
     const dispatch = useDispatch()
+    const {currentUser} = useSelector(state => state.users);
+    const {topBookmarked} = useSelector(state => state.bookmarks);
 
     useEffect(() => {
-        dispatch(getRandomTwoRecipesThunk())
+        if (currentUser && currentUser.role === "FOODIE") {
+            dispatch(getFoodieRecommendRecipesThunk(currentUser.foodieFavorite));
+        } else {
+            dispatch(getRandomTwoRecipesThunk());
+        }
+        dispatch(getAdminChoiceRecipesThunk());
+        dispatch(findTopBookmarkedThunk());
     }, [])
 
     return(
@@ -41,20 +50,19 @@ const HomePage = () => {
                     <div className="col-md-6">
                         <div className="card flex-md-row mb-4 box-shadow h-md-250">
                             <div className="card-body d-flex flex-column align-items-start">
-                                <strong className="d-inline-block mb-2 text-success">Top Liked Recipe</strong>
-                                <h3 className="mb-0">
-                                    <a className="text-dark" href="#">West Salad</a>
+                                <strong className="d-inline-block mb-2 text-success">Admin Choice</strong>
+                                <h3 className="mb-1">
+                                    {details && details.title}
                                 </h3>
-                                <div className="mb-1 text-muted">Chef Ramsey</div>
-                                <p className="card-text mb-auto">This delicious salad will be a perfect everyday meal!</p>
-                                <a href="#">Continue reading</a>
+                                <p className="card-text mb-auto">Our admin choice will be a perfect everyday meal!</p>
+                                <Link to={`/details/${details.id}`}>Continue reading</Link>
                             </div>
                             <img className="card-img-right d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="123"
                                  // width="30%"
                                  // height="50%"
                                  width="200" height="220"
-                                 src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80"
+                                 src={details && details.image}
                                  data-holder-rendered="true"/>
                         </div>
                     </div>
@@ -62,31 +70,44 @@ const HomePage = () => {
                         <div className="card flex-md-row mb-4 box-shadow h-md-250">
                             <div className="card-body d-flex flex-column align-items-start">
                                 <strong className="d-inline-block mb-2 text-success">Top Bookmarked Recipe</strong>
-                                <h3 className="mb-0">
-                                    <a className="text-dark" href="#">Margarita Castellane</a>
+                                <h3 className="mb-1">
+                                    {topBookmarked && topBookmarked.title}
                                 </h3>
-                                <div className="mb-1 text-muted">Chef Simoooon</div>
-                                <p className="card-text mb-auto">Tired of Margarita pizza? Try this easy to make Margarita Castellane which will be ready in 30 mins. </p>
-                                <a href="#">Continue reading</a>
+                                <p className="card-text mb-auto">Check out our most bookmarked recipe by our lovely Foodies! </p>
+                                {(topBookmarked && topBookmarked.type === "POST") ?
+                                    <Link to={`/post-detail/${topBookmarked.recipeID}`}>Continue reading</Link>
+                                    :
+                                    <Link to={`/detail/${topBookmarked.recipeID}`}>Continue reading</Link>
+                                }
                             </div>
                             <img className="card-img-right flex-auto d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
                                  // width="30%"
                                  // height="100%"
                                  width="200" height="220"
-                                 src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"
+                                 src={topBookmarked.image}
                                  data-holder-rendered="true"/>
                         </div>
                     </div>
                 </div>
-                <h2>Random Recipes</h2>
+                {currentUser && currentUser.role === 'FOODIE'&&
+                    <h2>{currentUser.foodieFavorite} Recipes For You</h2>
+                }
+                {(!currentUser || currentUser.role === 'ADMIN' || currentUser.role === 'CHEF') &&
+                    <h2>Random Recipes</h2>
+                }
                 <div className="row mb-2 mt-2">
-                    {recipes.map((recipe) => <div className="col-md-6">
+                    {recipes && recipes.map((recipe) => <div className="col-md-6">
                         <div className="card flex-md-row mb-4 box-shadow h-md-250">
                             <div className="card-body d-flex flex-column align-items-start">
-                                <strong className="d-inline-block mb-2 text-success">Random Recipe</strong>
-                                <h3 className="mb-0">
-                                    <a className="text-dark" href="#">{recipe.title}</a>
+                                {currentUser && currentUser.role === 'FOODIE' ?
+                                    <strong className="d-inline-block mb-2 text-success">Recommend Recipe</strong>
+                                    :
+                                    <strong className="d-inline-block mb-2 text-success">Random Recipe</strong>
+                                }
+
+                                <h3 className="mb-1">
+                                    {recipe && recipe.title}
                                 </h3>
                                 <p className="card-text mb-auto">Explore a new recipe for the day</p>
                                 <Link to={`/details/${recipe.id}`}>Continue reading</Link>

@@ -2,13 +2,14 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     createBookmarkThunk,
     deleteBookmarkThunk,
-    findBookmarksByUserThunk,
+    findBookmarksByUserThunk, findTopBookmarkedThunk,
     findUserHasBookmarkedThunk
 } from "./bookmarks-thunks";
 
 const initialState = {
     bookmarks: [],
     hasBookmarked: false,
+    topBookmarked: {}
 }
 
 const bookmarksReducer = createSlice({
@@ -27,6 +28,9 @@ const bookmarksReducer = createSlice({
         },
         [deleteBookmarkThunk.fulfilled]: (state, action) => {
             state.hasBookmarked = false;
+        },
+        [findTopBookmarkedThunk.fulfilled]: (state, action) => {
+            state.topBookmarked = action.payload;
         }
     }
 })

@@ -1,5 +1,11 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {createBookmark, deleteBookmark, findBookmarksByUser, findUserHasBookmarked} from "./bookmarks-service";
+import {
+    createBookmark,
+    deleteBookmark,
+    findBookmarksByUser,
+    findTopBookmarked,
+    findUserHasBookmarked
+} from "./bookmarks-service";
 
 export const createBookmarkThunk = createAsyncThunk(
     'createBookmark', async (bookmark) => createBookmark(bookmark)
@@ -15,4 +21,8 @@ export const findBookmarksByUserThunk = createAsyncThunk(
 
 export const findUserHasBookmarkedThunk = createAsyncThunk(
     'findUserHasBookmarked', async (bookmark) => findUserHasBookmarked(bookmark.user, bookmark.recipeID)
+)
+
+export const findTopBookmarkedThunk = createAsyncThunk(
+    'findTopBookmarked', async () => findTopBookmarked()
 )

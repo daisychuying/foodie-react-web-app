@@ -23,6 +23,11 @@ export const findBookmarksByUser = async (user) => {
     return response.data;
 }
 
+export const findTopBookmarked = async () => {
+    const response = await axios.get(`${BOOKMARKS_API}/top`);
+    return response.data;
+}
+
 export const findUserHasBookmarked = async (user, recipeID) => {
     const response = await axios.get(`${USER_BOOKMARKS_API}/${user}/bookmarks/${recipeID}`);
     return response.data;
