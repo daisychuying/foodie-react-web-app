@@ -5,7 +5,7 @@ import {
     loginThunk,
     logoutThunk,
     profileThunk,
-    registerThunk
+    registerThunk, updateUserThunk
 } from "./users-thunk";
 
 const usersReducer = createSlice({
@@ -42,6 +42,9 @@ const usersReducer = createSlice({
         },
         [registerThunk.rejected]:(state,action) => {
             state.registrationError = true
+        },
+        [updateUserThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload
         }
     }
 })

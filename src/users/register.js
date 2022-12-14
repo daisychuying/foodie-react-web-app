@@ -35,7 +35,9 @@ const Register = () => {
         } else {
             const newUser = {username, password, email, firstName, lastName, role, certifiedChefID,foodieFavorite, introduction}
             await dispatch(registerThunk(newUser))
-            navigate('/profile')
+            if (currentUser) {
+                navigate("/profile")
+            }
         }
     }
 

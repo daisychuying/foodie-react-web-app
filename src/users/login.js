@@ -12,6 +12,7 @@ const Login = () => {
      const [error, setError] = useState(null)
      const {currentUser} = useSelector((state) => state.users)
      const dispatch = useDispatch()
+
      const handleLoginBtn= async () =>{
          const loginUser = {username, password}
          await dispatch(loginThunk(loginUser))
