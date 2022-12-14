@@ -24,6 +24,8 @@ import postsReducer from "./posts/posts-reducer";
 import PostList from "./posts/postList";
 import PostDetail from "./posts/post-detail";
 import RecipeByCategory from "./recipes/recipe-category";
+import FollowersList from "./users/followersList";
+import FollowingsList from "./users/followingsList";
 
 const store = configureStore({
     reducer: {
@@ -53,6 +55,8 @@ function App() {
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/profile/:uid" element={<PublicProfile />} />
                       <Route path="/edit-profile" element={<EditProfile />}/>
+                      <Route path="/follower/:uid" element={<FollowersList/>}/>
+                      <Route path="/following/:uid" element={<FollowingsList/>}/>
                       {/* Posts */}
                       <Route path="/upload-post" element={<UploadPost />}/>
                       <Route path="/all-posts" element={<PostList />}/>

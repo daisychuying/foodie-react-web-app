@@ -47,7 +47,7 @@ const Profile = () => {
                                             <h3 className="small mb-4">{currentUser.role}</h3>
                                         </div>
                                         <div className="float-end">
-                                            <Link to="/edit-profile" className="btn btn-secondary me-2">Edit Profile</Link>
+                                            <Link to="/edit-profile" className="btn btn-info me-2">Edit Profile</Link>
                                             <button className="btn btn-danger" onClick={handleLogoutBtn}> Logout </button>
                                         </div>
 
@@ -57,12 +57,12 @@ const Profile = () => {
                                             <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{bookmarks.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-image mr-1"></i>Collections</small>
                                             </li>
-                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{followers.length}</h5>
+                                            <Link to={`/follower/${currentUser._id}`} className="list-inline-item  text-decoration-none"><h5 className="font-weight-bold mb-0 d-block text-black">{followers.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-user mr-1"></i>Followers</small>
-                                            </li>
-                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{following.length}</h5>
+                                            </Link>
+                                            <Link to={`/following/${currentUser._id}`} className="list-inline-item text-decoration-none"><h5 className="font-weight-bold mb-0 d-block text-black">{following.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-user mr-1"></i>Following</small>
-                                            </li>
+                                            </Link>
                                         </ul>
                                     </div>
 
@@ -80,16 +80,16 @@ const Profile = () => {
                                         </div>}
                                     {currentUser.role === 'CHEF' &&
                                         <div>
-                                            <div className="px-4 py-3"><h5 className="mb-0">Recent Posts</h5>
+                                            <div className="px-4 py-3"><h5 className="mb-0">Chef Certificate Number</h5>
+                                                <div className="p-4 rounded shadow-sm bg-light">
+                                                    <p className="font-italic mb-0">{currentUser.certifiedChefID}</p>
+                                                </div>
+                                            </div>
+                                            <div className="px-4 py-3"><h5 className="mb-0">All Posts</h5>
                                                 <div className="p-3 ms-0 rounded shadow-sm bg-light row">
                                                     {postsByUser && postsByUser.map((post, index) =>
                                                         <PostCard key={index} post={post}/>
                                                     )}
-                                                </div>
-                                            </div>
-                                            <div className="px-4 py-3"><h5 className="mb-0">Chef Certificate Number</h5>
-                                                <div className="p-4 rounded shadow-sm bg-light">
-                                                    <p className="font-italic mb-0">{currentUser.certifiedChefID}</p>
                                                 </div>
                                             </div>
                                         </div>
