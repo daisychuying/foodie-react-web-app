@@ -47,7 +47,7 @@ const Profile = () => {
                                             <h3 className="small mb-4">{currentUser.role}</h3>
                                         </div>
                                         <div className="float-end">
-                                            <Link to="/edit-profile" className="btn btn-secondary me-2">Edit Profile</Link>
+                                            <Link to="/edit-profile" className="btn btn-info me-2">Edit Profile</Link>
                                             <button className="btn btn-danger" onClick={handleLogoutBtn}> Logout </button>
                                         </div>
 
@@ -57,12 +57,12 @@ const Profile = () => {
                                             <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{bookmarks.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-image mr-1"></i>Collections</small>
                                             </li>
-                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{followers.length}</h5>
+                                            <Link to={`/follower/${currentUser._id}`} className="list-inline-item  text-decoration-none"><h5 className="font-weight-bold mb-0 d-block text-black">{followers.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-user mr-1"></i>Followers</small>
-                                            </li>
-                                            <li className="list-inline-item"><h5 className="font-weight-bold mb-0 d-block">{following.length}</h5>
+                                            </Link>
+                                            <Link to={`/following/${currentUser._id}`} className="list-inline-item text-decoration-none"><h5 className="font-weight-bold mb-0 d-block text-black">{following.length}</h5>
                                                 <small className="text-muted"> <i className="fas fa-user mr-1"></i>Following</small>
-                                            </li>
+                                            </Link>
                                         </ul>
                                     </div>
 
