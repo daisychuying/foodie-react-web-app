@@ -44,18 +44,11 @@ const RecipesDetail = () => {
     return (
         <div className="container my-4">
             <HomeNav />
+            <div className="card bg-light border-warning">
+                <h3 className="card-header bg-warning text-center">Recipe Detail</h3>
             <div className="row">
                 <div className="col-5">
                     <img className="img-fluid" src={details.image}  alt={details.title} />
-                    {currentUser && !hasBookmarked &&
-                        <button className="btn btn-primary mt-5" onClick={handleBookmarkBtn}>
-                            <i className="bi bi-bookmark-plus"></i> Bookmark
-                        </button>}
-                    {currentUser && hasBookmarked &&
-                        <button className="btn btn-primary mt-5" onClick={handleRemoveBtn}>
-                            <i className="bi bi-bookmark-dash"></i> Remove
-                        </button>
-                    }
                 </div>
                 <div className="col-7">
                     <h3>{details.title}</h3>
@@ -68,13 +61,36 @@ const RecipesDetail = () => {
 
                     {details.pairingText &&
                         <h4>Recommended Pairing: {details.pairingText}</h4> }
+                    <div className="row">
+                        <div className="col-2">
+                            {currentUser && hasBookmarked &&
+                                <button className="btn  btn-info mt-3" onClick={handleBookmarkBtn} disabled>
+                                    <i className="bi bi-bookmark-plus"></i> Bookmark
+                                </button>}
+                        </div>
+                        <div className="col-2">
 
-                    {details.summary && <h4>Summary: </h4>}
-                    <p dangerouslySetInnerHTML={{__html: details.summary}}></p>
+                            {currentUser && !hasBookmarked &&
+                                <button className="btn btn-warning mt-3" onClick={handleBookmarkBtn}>
+                                    <i className="bi bi-bookmark-plus"></i> Bookmark
+                                </button>}
+                        </div>
+                        <div className="col-2">
+
+                            {currentUser && hasBookmarked &&
+                                <button className="btn btn-danger mt-3" onClick={handleRemoveBtn}>
+                                    <i className="bi bi-bookmark-dash"></i> Remove
+                                </button>
+                            }
+                        </div>
+                    </div>
                 </div>
+            </div>
             </div>
 
             <div className="my-5 ms-5">
+                {details.summary && <h4>Summary: </h4>}
+                <p dangerouslySetInnerHTML={{__html: details.summary}}></p>
                 <h4>Instructions</h4>
                 <ul>
                     {details.analyzedInstructions
