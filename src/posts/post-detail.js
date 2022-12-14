@@ -80,7 +80,7 @@ const PostDetail = () => {
                                 }
                             </div>
                         </div>
-                        <div className="text-center mt-3">
+                        <div className="p-2 m-2 mt-3">
                             <h4>Instructions</h4>
                             <p>{postDetail.instructions}</p>
                             {currentUser && (currentUser._id === postDetail.author._id || currentUser.role === "ADMIN") &&
