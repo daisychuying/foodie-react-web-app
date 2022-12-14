@@ -74,7 +74,7 @@ const Profile = () => {
 
                                     <div className="px-4 py-3"><h5 className="mb-0">About</h5>
                                         <div className="p-4 rounded shadow-sm bg-light">
-                                            {currentUser.role == 'ADMIN' &&
+                                            {currentUser.role === 'ADMIN' &&
                                                 <p className="font-italic mb-0">Admin's Choice: {currentUser.adminsChoice}</p>}
                                             {currentUser.role === 'FOODIE' &&
                                                 <p className="font-italic mb-0">Foodie Favorite: {currentUser.foodieFavorite}</p>}
@@ -84,15 +84,16 @@ const Profile = () => {
                                             <p className="font-italic mb-0">Email Address: {currentUser.email}</p>
                                         </div>
                                     </div>
-                                        <div>
-                                            <div className="px-4 py-3"><h5 className="mb-0">All Posts</h5>
-                                                <div className="p-3 ms-0 rounded shadow-sm bg-light row">
-                                                    {postsByUser && postsByUser.map((post, index) =>
-                                                        <PostCard key={index} post={post}/>
-                                                    )}
-                                                </div>
+                                    {currentUser && currentUser.role === "CHEF" &&
+                                        <div className="px-4 py-3">
+                                            <h5 className="mb-0">All Posts</h5>
+                                            <div className="p-3 ms-0 rounded shadow-sm bg-light row">
+                                                {postsByUser && postsByUser.map((post, index) =>
+                                                    <PostCard key={index} post={post}/>
+                                                )}
                                             </div>
                                         </div>
+                                    }
 
                                     <div className="py-4 px-4 ms-2">
                                         <h5 className="mb-2">All collections</h5>

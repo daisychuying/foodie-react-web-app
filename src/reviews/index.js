@@ -41,7 +41,7 @@ const ReviewsList = () => {
                     <li key={index} className="list-group-item">
                         {review.review}
                         {currentUser && (review.author._id === currentUser._id || currentUser.role === "ADMIN") &&
-                        <button onClick={() => dispatch(deleteReviewThunk(review._id))} className="btn btn-sm btn-danger float-end mx-2">Delete</button>}
+                            <button onClick={() => dispatch(deleteReviewThunk(review._id))} className="btn btn-sm btn-outline-danger float-end ms-2"><i className="bi bi-x-square"></i></button>}
                         <Link to={`/profile/${review.author._id}`} className="float-end text-decoration-none text-black fw-bold pt-1">{review.author.username}</Link>
                     </li>
 
