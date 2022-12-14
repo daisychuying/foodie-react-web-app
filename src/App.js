@@ -26,6 +26,7 @@ import PostDetail from "./posts/post-detail";
 import RecipeByCategory from "./recipes/recipe-category";
 import FollowersList from "./users/followersList";
 import FollowingsList from "./users/followingsList";
+import questionsReducer from "./questions/questions-reducer";
 
 const store = configureStore({
     reducer: {
@@ -35,6 +36,7 @@ const store = configureStore({
         reviews: reviewsReducer,
         follows: followsReducer,
         posts: postsReducer,
+        questions: questionsReducer,
     }
 })
 

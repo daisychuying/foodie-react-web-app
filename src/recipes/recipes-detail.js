@@ -30,7 +30,6 @@ const RecipesDetail = () => {
         }))
     }
 
-
     useEffect(() => {
         dispatch(findRecipeByIdThunk(recipeID));
         if (currentUser) {
@@ -62,27 +61,20 @@ const RecipesDetail = () => {
                     {details.pairingText &&
                         <h4>Recommended Pairing: {details.pairingText}</h4> }
                     <div className="row">
-                        <div className="col-2">
-                            {currentUser && hasBookmarked &&
-                                <button className="btn  btn-info mt-3" onClick={handleBookmarkBtn} disabled>
-                                    <i className="bi bi-bookmark-plus"></i> Bookmark
-                                </button>}
-                        </div>
-                        <div className="col-2">
-
-                            {currentUser && !hasBookmarked &&
+                        {currentUser && !hasBookmarked &&
+                            <div className="col-2">
                                 <button className="btn btn-warning mt-3" onClick={handleBookmarkBtn}>
                                     <i className="bi bi-bookmark-plus"></i> Bookmark
-                                </button>}
-                        </div>
-                        <div className="col-2">
-
-                            {currentUser && hasBookmarked &&
+                                </button>
+                            </div>
+                        }
+                        {currentUser && hasBookmarked &&
+                            <div className="col-2">
                                 <button className="btn btn-danger mt-3" onClick={handleRemoveBtn}>
                                     <i className="bi bi-bookmark-dash"></i> Remove
                                 </button>
-                            }
-                        </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

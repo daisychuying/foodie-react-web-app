@@ -62,6 +62,22 @@ const PostDetail = () => {
                                 {postDetail.author.firstName} {postDetail.author.lastName}</Link>
                         </h4>
                         <h4>Ready In Minutes: {postDetail.readyInMinutes}</h4>
+                        <div className="row">
+                            {currentUser && !hasBookmarked &&
+                                <div className="col-2">
+                                    <button className="btn btn-warning mt-3" onClick={handleBookmarkBtn}>
+                                        <i className="bi bi-bookmark-plus"></i> Bookmark
+                                    </button>
+                                </div>
+                            }
+                            {currentUser && hasBookmarked &&
+                                <div className="col-2">
+                                    <button className="btn btn-danger mt-3" onClick={handleRemoveBtn}>
+                                        <i className="bi bi-bookmark-dash"></i> Remove
+                                    </button>
+                                </div>
+                            }
+                        </div>
                     </div>
                     <div className="text-center mt-3">
                         <h4>Instructions</h4>
@@ -69,16 +85,6 @@ const PostDetail = () => {
                         {currentUser && (currentUser._id === postDetail.author._id || currentUser.role === "ADMIN") &&
                         <button className="btn btn-danger mt-5 me-2" onClick={handleDeleteBtn}>Delete</button>}
 
-                        {currentUser && !hasBookmarked &&
-                            <button className="btn btn-success mt-5" onClick={handleBookmarkBtn}>
-                                <i className="bi bi-bookmark-plus"></i> Bookmark
-                            </button>
-                        }
-                        {currentUser && hasBookmarked &&
-                            <button className="btn btn-primary mt-5" onClick={handleRemoveBtn}>
-                                <i className="bi bi-bookmark-dash"></i> Remove
-                            </button>
-                        }
 
                     </div>
                 </div>

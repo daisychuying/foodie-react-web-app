@@ -10,7 +10,7 @@ const reviewsReducer = createSlice({
     initialState,
     extraReducers: {
         [createReviewThunk.fulfilled]: (state, action) => {
-            state.reviews.push(action.payload);
+            state.reviews.unshift(action.payload);
         },
         [findReviewsByRecipeThunk.fulfilled]: (state, action) => {
             state.reviews = action.payload;
