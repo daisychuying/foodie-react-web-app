@@ -44,7 +44,7 @@ const Login = () => {
                                 <h1 className="h3 mb-3 mt-5 fw-normal text-center">Please sign in</h1>
                                  {
                                      error &&
-                                     <div className="alart text-danger">
+                                     <div className="alert alert-danger">
                                          {error}
                                      </div>
                                  }
@@ -59,6 +59,7 @@ const Login = () => {
                                  </div>
                                  <div className="form-floating">
                                      <input
+                                         type="password"
                                          className="form-control mb-2"
                                          value={password}
                                          placeholder="Password"

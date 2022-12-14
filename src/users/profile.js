@@ -20,7 +20,7 @@ const Profile = () => {
     const dispatch = useDispatch()
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
-        navigate('/login')
+        navigate('/')
     }
 
     useEffect( () => {

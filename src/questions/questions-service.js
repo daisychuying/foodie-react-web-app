@@ -17,3 +17,8 @@ export const findQuestionsByPostID = async (postID) => {
     const response = await axios.get(`${POST_QUESTION_API}/${postID}/questions`);
     return response.data;
 }
+
+export const answerQuestion = async (questionID, updatedQuestion) => {
+    await axios.put(`${QUESTION_API}/${questionID}`, updatedQuestion);
+    return updatedQuestion;
+}

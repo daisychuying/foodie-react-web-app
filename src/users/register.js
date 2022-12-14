@@ -85,6 +85,7 @@ const Register = () => {
                                                 <input
                                                     className="form-control mb-2"
                                                     value={password}
+                                                    type="password"
                                                     id='password'
                                                     placeholder="Password"
                                                     onChange={(e) => setPassword(e.target.value)}/>
