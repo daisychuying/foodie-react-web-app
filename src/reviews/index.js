@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
-import {deleteQuestionThunk} from "../questions/questions-thunk";
 
 const ReviewsList = () => {
     const {recipeID} = useParams();
@@ -26,13 +25,13 @@ const ReviewsList = () => {
     }, [])
 
     return (
-        <div className="mt-5">
-            <h4>Reviews</h4>
+        <div className="ms-1">
+            <h4 className="mt-3">Reviews</h4>
             {currentUser &&
                 <>
                     <div className="mt-3 mb-5">
                         <textarea className="form-control" onChange={(e) => setReview(e.target.value)} value={review}/>
-                        <button className="btn btn-primary float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
+                        <button className="btn btn-warning float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
                     </div>
                     <br />
                 </>
@@ -42,9 +41,8 @@ const ReviewsList = () => {
                     <li key={index} className="list-group-item">
                         {review.review}
                         {currentUser && (review.author._id === currentUser._id || currentUser.role === "ADMIN") &&
-                            <button onClick={() => dispatch(deleteReviewThunk(review._id))} className="btn btn-sm btn-outline-danger float-end ms-2"><i className="bi bi-x-square"></i></button>
-                        }
-                        <Link to={`/profile/${review.author._id}`} className="float-end">{review.author.username}</Link>
+                        <button onClick={() => dispatch(deleteReviewThunk(review._id))} className="btn btn-sm btn-danger float-end mx-2">Delete</button>}
+                        <Link to={`/profile/${review.author._id}`} className="float-end text-decoration-none text-black fw-bold pt-1">{review.author.username}</Link>
                     </li>
 
                 )}
