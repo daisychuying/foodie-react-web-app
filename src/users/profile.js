@@ -80,16 +80,16 @@ const Profile = () => {
                                         </div>}
                                     {currentUser.role === 'CHEF' &&
                                         <div>
-                                            <div className="px-4 py-3"><h5 className="mb-0">Recent Posts</h5>
+                                            <div className="px-4 py-3"><h5 className="mb-0">Chef Certificate Number</h5>
+                                                <div className="p-4 rounded shadow-sm bg-light">
+                                                    <p className="font-italic mb-0">{currentUser.certifiedChefID}</p>
+                                                </div>
+                                            </div>
+                                            <div className="px-4 py-3"><h5 className="mb-0">All Posts</h5>
                                                 <div className="p-3 ms-0 rounded shadow-sm bg-light row">
                                                     {postsByUser && postsByUser.map((post, index) =>
                                                         <PostCard key={index} post={post}/>
                                                     )}
-                                                </div>
-                                            </div>
-                                            <div className="px-4 py-3"><h5 className="mb-0">Chef Certificate Number</h5>
-                                                <div className="p-4 rounded shadow-sm bg-light">
-                                                    <p className="font-italic mb-0">{currentUser.certifiedChefID}</p>
                                                 </div>
                                             </div>
                                         </div>

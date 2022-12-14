@@ -12,12 +12,15 @@ const Login = () => {
      const [error, setError] = useState(null)
      const {currentUser} = useSelector((state) => state.users)
      const dispatch = useDispatch()
-     const handleLoginBtn= () =>{
+     const handleLoginBtn= async () =>{
          const loginUser = {username, password}
-         dispatch(loginThunk(loginUser))
+         await dispatch(loginThunk(loginUser))
          if (!currentUser) {
              setError("Invalid username or password")
+         } else {
+             navigate("/profile")
          }
+
      }
      useEffect( () => {
          if (currentUser) {
