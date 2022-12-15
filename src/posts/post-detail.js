@@ -58,9 +58,8 @@ const PostDetail = () => {
                         </div>
                         <div className="col-7">
                             <h3 className="pb-2">{postDetail.title}</h3>
-                            <h4>Author :
-                                <Link to={`/profile/${postDetail.author._id}`} role="button" className="btn btn-warning">
-                                    {postDetail.author.firstName} {postDetail.author.lastName}</Link>
+                            <h4>Author:
+                                <Link to={`/profile/${postDetail.author._id}`} role="button" className="ms-2 mb-1 py-1 px-1 btn btn-outline-info"> {postDetail.author.firstName} {postDetail.author.lastName}</Link>
                             </h4>
                             <h4>Ready In Minutes: {postDetail.readyInMinutes}</h4>
                             <div className="row">
@@ -83,8 +82,6 @@ const PostDetail = () => {
                         <div className="p-2 m-2 mt-3">
                             <h4>Instructions</h4>
                             <p>{postDetail.instructions}</p>
-                            {/*{currentUser && (currentUser._id === postDetail.author._id || currentUser.role === "ADMIN") &&*/}
-                            {/*<button className="btn btn-danger mt-5 me-2" onClick={handleDeleteBtn}>Delete This Post</button>}*/}
                         </div>
                         <QuestionsList/>
                     </div>

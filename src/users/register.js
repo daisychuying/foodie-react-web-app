@@ -97,6 +97,7 @@ const Register = () => {
                                                 <input
                                                     className="form-control mb-2"
                                                     value={validatePassword}
+                                                    type="password"
                                                     id='validatePassword'
                                                     placeholder="Re-enter your password"
                                                     onChange={(e) => setValidatePassword(e.target.value)}/>

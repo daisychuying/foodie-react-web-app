@@ -30,7 +30,7 @@ const ReviewsList = () => {
             {currentUser &&
                 <>
                     <div className="mt-3 mb-5">
-                        <textarea className="form-control border border-warning" onChange={(e) => setReview(e.target.value)} value={review}/>
+                        <textarea className="form-control border border-warning" placeholder="Leave your reviews here." onChange={(e) => setReview(e.target.value)} value={review}/>
                         <button className="btn btn-warning float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
                     </div>
                     <br />
@@ -42,7 +42,7 @@ const ReviewsList = () => {
                         {review.review}
                         {currentUser && (review.author._id === currentUser._id || currentUser.role === "ADMIN") &&
                             <button onClick={() => dispatch(deleteReviewThunk(review._id))} className="btn btn-sm btn-outline-danger float-end ms-2"><i className="bi bi-x-square"></i></button>}
-                        <Link to={`/profile/${review.author._id}`} className="float-end text-decoration-none text-black fw-bold pt-1">{review.author.username}</Link>
+                        <Link to={`/profile/${review.author._id}`} className="float-end ms-2 mb-1 py-1 px-1 btn btn-outline-info">{review.author.username}</Link>
                     </li>
 
                 )}
