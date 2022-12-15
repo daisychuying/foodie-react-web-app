@@ -30,15 +30,15 @@ const ReviewsList = () => {
             {currentUser &&
                 <>
                     <div className="mt-3 mb-5">
-                        <textarea className="form-control" onChange={(e) => setReview(e.target.value)} value={review}/>
+                        <textarea className="form-control border border-warning" onChange={(e) => setReview(e.target.value)} value={review}/>
                         <button className="btn btn-warning float-end mt-2" onClick={handlePostReviewBtn}>Post Review</button>
                     </div>
                     <br />
                 </>
             }
-            <ul className="list-group">
+            <ul className="list-group border border-warning border-bottom-0">
                 {reviews && reviews.map((review, index) =>
-                    <li key={index} className="list-group-item">
+                    <li key={index} className="list-group-item border-0 border-bottom border-warning">
                         {review.review}
                         {currentUser && (review.author._id === currentUser._id || currentUser.role === "ADMIN") &&
                             <button onClick={() => dispatch(deleteReviewThunk(review._id))} className="btn btn-sm btn-outline-danger float-end ms-2"><i className="bi bi-x-square"></i></button>}

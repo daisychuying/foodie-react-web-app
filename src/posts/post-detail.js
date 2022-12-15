@@ -83,13 +83,15 @@ const PostDetail = () => {
                         <div className="p-2 m-2 mt-3">
                             <h4>Instructions</h4>
                             <p>{postDetail.instructions}</p>
-                            {currentUser && (currentUser._id === postDetail.author._id || currentUser.role === "ADMIN") &&
-                            <button className="btn btn-danger mt-5 me-2" onClick={handleDeleteBtn}>Delete</button>}
+                            {/*{currentUser && (currentUser._id === postDetail.author._id || currentUser.role === "ADMIN") &&*/}
+                            {/*<button className="btn btn-danger mt-5 me-2" onClick={handleDeleteBtn}>Delete This Post</button>}*/}
                         </div>
+                        <QuestionsList/>
                     </div>
                 </div>
             }
-            <QuestionsList />
+            {currentUser && postDetail && (currentUser._id === postDetail.author._id || currentUser.role === "ADMIN") &&
+                <button className="btn btn-danger my-3 float-end" onClick={handleDeleteBtn}>Delete This Post</button>}
         </div>
     )
 }
