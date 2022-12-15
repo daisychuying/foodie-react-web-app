@@ -34,11 +34,6 @@ const RecipeList = () => {
             <div className="row mt-4">
                 {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe}/>)}
             </div>
-
-
-
-
-            {/*<pre>{JSON.stringify(recipes, null, 2)}</pre>*/}
         </>
     )
 }

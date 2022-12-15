@@ -6,7 +6,6 @@ import {Routes, Route} from "react-router";
 // Import Components
 import UserList from "./users/userList";
 import Recipes from "./recipes";
-import Navigation from "./navigation";
 import Login from "./users/login";
 import Register from "./users/register";
 import Profile from "./users/profile";
@@ -45,7 +44,6 @@ function App() {
       <div className="container mt-4 mb-4">
           <Provider store={store}>
               <BrowserRouter>
-                  {/*<Navigation />*/}
                   <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/search" element={<Recipes />} />

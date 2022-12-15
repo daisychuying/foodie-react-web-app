@@ -59,8 +59,6 @@ const HomePage = () => {
                             </div>
                             <img className="card-img-right d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="123"
-                                 // width="30%"
-                                 // height="50%"
                                  width="200" height="220"
                                  src={details && details.image}
                                  data-holder-rendered="true"/>
@@ -82,8 +80,6 @@ const HomePage = () => {
                             </div>
                             <img className="card-img-right flex-auto d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
-                                 // width="30%"
-                                 // height="100%"
                                  width="200" height="220"
                                  src={topBookmarked.image}
                                  data-holder-rendered="true"/>
@@ -114,8 +110,6 @@ const HomePage = () => {
                             </div>
                             <img className="card-img-right flex-auto d-none d-md-block"
                                  data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
-                                 // width="30%"
-                                 // height="100%"
                                  width="200" height="220"
                                  src={recipe.image}
                                  data-holder-rendered="true"/>

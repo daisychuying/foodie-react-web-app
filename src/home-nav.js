@@ -17,7 +17,7 @@ const HomeNav = () => {
                       <Link className="btn btn-lg" to="/login" title="profile" ><i className="bi bi-person-circle fa-5x me-3"></i>  </Link>
                       {currentUser && currentUser.role === 'ADMIN' && <Link to="/users" className="btn btn-lg btn-outline-secondary" role="button">Users List</Link>}
                       {currentUser && currentUser.role === 'CHEF' && <Link to="/upload-post" className="btn btn-lg btn-outline-secondary" role="button">Upload Post</Link>}
-                      {(!currentUser || (currentUser && currentUser.role === 'FOODIE') )&& <Link to="/register" className="btn btn-lg btn-outline-secondary" role="button">Sign Up</Link>}
+                      {!currentUser && <Link to="/register" className="btn btn-lg btn-outline-secondary" role="button">Sign Up</Link>}
 
                   </div>
               </div>

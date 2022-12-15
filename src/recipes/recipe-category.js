@@ -39,8 +39,6 @@ const RecipeByCategory = () => {
                     {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe}/>)}
                 </div>
             </div>
-
-            {/*<pre>{JSON.stringify(recipes, null, 2)}</pre>*/}
         </>
     )
 }

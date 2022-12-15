@@ -96,10 +96,6 @@ const RecipesDetail = () => {
                 </div>
             </div>
 
-
-            {/*<ReviewsList />*/}
-
-            {/*<pre>{JSON.stringify(details, null, 2)}</pre>*/}
         </div>
     )
 }
