@@ -9,9 +9,18 @@ const PostList = () =>{
     const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState('');
     const {posts} = useSelector(state => state.posts);
+
+    const handleSearchBtn = () => {
+        if (searchTerm === '') {
+            dispatch(findAllPostsThunk());
+        } else {
+            dispatch(findPostBySearchTermThunk(searchTerm));
+        }
+    }
+
     useEffect( () => {
         dispatch(findAllPostsThunk())
-    }, [])
+    }, [searchTerm])
 
     return (
         <div className="container">
@@ -21,7 +30,7 @@ const PostList = () =>{
                 <div className="px-0 col-6">
                     <h1 className="display-4 font-italic mb-5 text-center">Search Chef's Recipes</h1>
                     <div className="input-group">
-                        <button onClick={() => dispatch(findPostBySearchTermThunk(searchTerm))} className="btn btn-secondary float-end">Search</button>
+                        <button onClick={handleSearchBtn} className="btn btn-secondary float-end">Search</button>
                         <input
                             className="form-control w-75"
                             onChange={(e) => {
